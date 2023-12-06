@@ -4,7 +4,7 @@ import WorkFlowText from "../../Assets/WorkFlowText.png";
 import SignUpCSS from "./SignUp.module.css";
 import { Link } from "react-router-dom";
 
-function SignUp() {
+function SignUp({ setCurrentView }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -41,6 +41,7 @@ function SignUp() {
         // You may want to redirect to another page or show a success message
         console.log("User signed up successfully");
         setIsSignUpSuccessful(true);
+        setCurrentView("login");
       } else {
         // Handle errors, e.g., display an error message
         console.error("Error signing up:", response.statusText);
@@ -95,9 +96,9 @@ function SignUp() {
 
           <div className="bottom">
             <div className="b-right">
-              <Link to="/login">
-                <button onClick={handleSignUp}>Sign Up</button>
-              </Link>
+              {/* <Link to="/"> */}
+              <button onClick={handleSignUp}>Sign Up</button>
+              {/* </Link> */}
             </div>
           </div>
         </div>
