@@ -1,0 +1,18 @@
+.imt-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.imt-name {
+    margin-left: 10px;
+    font-size: 2vh;
+    font-weight: 300;
+}
+
+.imt-bottom-divider {
+    height: 1px;
+    width: 100%;
+    background-color: gray;
+}

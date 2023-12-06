@@ -10,19 +10,16 @@ function LogIn() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/v1/employees/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userEmail: email,
-            userPassword: password,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:3000/api/v1/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userEmail: email,
+          userPassword: password,
+        }),
+      });
 
       if (response.ok) {
         // Successfully logged in

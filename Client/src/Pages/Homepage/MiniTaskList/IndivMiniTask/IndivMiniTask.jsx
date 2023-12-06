@@ -3,9 +3,13 @@ import "./IndivMiniTask.css";
 
 function IndivMiniTask({ task }) {
   return (
-    <div className="indivminitask-container">
-      <h1>{task.name}</h1>
-    </div>
+    <>
+      <div className="imt-container">
+        <input type="checkbox" className="imt-checkbox" />
+        <h2 className="imt-name">{task.name}</h2>
+      </div>
+      <div className="imt-bottom-divider"></div>
+    </>
   );
 }
 

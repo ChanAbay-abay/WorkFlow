@@ -1,0 +1,28 @@
+.TR-container {
+    /* text-align: center; */
+    color: white;
+}
+
+.TR-title {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.TR-linechart-container {
+    /* width: 500px; */
+    /* height: 200px; */
+    /* margin: 0 auto; */
+    background-color: white;
+    /* border-radius: 16px; */
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.TR-linechart-container .recharts-cartesian-grid-horizontal line {
+    stroke: #eee;
+}
+
+.TR-linechart-container .recharts-tooltip {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}

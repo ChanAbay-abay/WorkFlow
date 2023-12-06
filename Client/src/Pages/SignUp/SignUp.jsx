@@ -4,29 +4,26 @@ import WorkFlowText from "../../Assets/WorkFlowText.png";
 import SignUpCSS from "./SignUp.module.css";
 import { Link } from "react-router-dom";
 
-
-
 function SignUp() {
-  
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isSignUpSuccessful, setIsSignUpSuccessful] = useState(false);
-  
+
   const handleSignUp = async () => {
     if (!email || !username || !password || !confirmPassword) {
       console.error("Please fill in all the fields");
       return;
     }
-  
+
     // Additional validation, e.g., checking if passwords match
     if (password !== confirmPassword) {
       console.error("Passwords do not match");
       return;
     }
     try {
-      const response = await fetch("http://localhost:3000/api/v1/employees", {
+      const response = await fetch("http://localhost:3000/api/v1/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +35,7 @@ function SignUp() {
           // confirmPassword: confirmPassword,
         }),
       });
-  
+
       if (response.ok) {
         // User successfully signed up
         // You may want to redirect to another page or show a success message
@@ -52,7 +49,7 @@ function SignUp() {
       console.error("Error:", error.message);
     }
   };
-  
+
   return (
     <>
       <div className="center-area">
@@ -60,7 +57,7 @@ function SignUp() {
           <div className="log-sign">
             <h1 className="log">Sign Up</h1>
           </div>
-  
+
           <div className={SignUpCSS.form}>
             <h2>Email</h2>
             <input
@@ -95,11 +92,11 @@ function SignUp() {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
-  
+
           <div className="bottom">
             <div className="b-right">
-            <Link to="/login">
-              <button onClick={handleSignUp}>Sign Up</button>
+              <Link to="/login">
+                <button onClick={handleSignUp}>Sign Up</button>
               </Link>
             </div>
           </div>
@@ -107,6 +104,5 @@ function SignUp() {
       </div>
     </>
   );
-
-  }
+}
 export default SignUp;
