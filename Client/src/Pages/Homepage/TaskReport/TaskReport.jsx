@@ -1,8 +1,9 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import "./TaskReport.css";
 import {
-  LineChart,
-  Line,
+  BarChart,
+  Bar,
+  Rectangle,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -13,11 +14,34 @@ import {
 
 function TaskReport() {
   const data = [
-    { name: "G1", value: 200 },
-    { name: "G2", value: 441 },
-    { name: "G3", value: 660 },
-    { name: "G4", value: 850 },
-    { name: "G5", value: 1010 },
+    {
+      name: "Monday",
+      tasksCompleted: 2,
+    },
+    {
+      name: "Tuesday",
+      tasksCompleted: 4,
+    },
+    {
+      name: "Wednesday",
+      tasksCompleted: 0,
+    },
+    {
+      name: "Thursday",
+      tasksCompleted: 2,
+    },
+    {
+      name: "Friday",
+      tasksCompleted: 1,
+    },
+    {
+      name: "Saturday",
+      tasksCompleted: 5,
+    },
+    {
+      name: "Sunday",
+      tasksCompleted: 4,
+    },
   ];
   return (
     <div className="TR-container">
@@ -25,30 +49,28 @@ function TaskReport() {
       {/* maybe we can make a tracker for how many tasks a user finishes in 
       a day pina streak streak */}
       <div className="TR-linechart-container">
-        <LineChart
-          width={1000}
-          height={120}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          {/* <YAxis /> */}
-          <Tooltip />
-          {/* <Legend /> */}
-          <Line
-            type="monotone"
-            dataKey="pv"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
-          <Line type="monotone" dataKey="value" stroke="#82ca9d" />
-        </LineChart>
+        <ResponsiveContainer width="100%" height={200}>
+          <BarChart
+            data={data}
+            margin={{
+              top: 5,
+              // right: 30,
+              // left: 20,
+              bottom: 35,
+            }}
+          >
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
+            <XAxis dataKey="name" />
+            {/* <YAxis /> */}
+            <Tooltip />
+            {/* <Legend /> */}
+            <Bar
+              dataKey="tasksCompleted"
+              fill="#006edc"
+              activeBar={<Rectangle fill="gold" stroke="purple" />}
+            />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
