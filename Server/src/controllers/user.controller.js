@@ -1,12 +1,12 @@
 'use strict';
-const User = require('../models/employee.model');
+const User = require('../models/user.model');
 
 exports.findAll = function (req, res) {
-    User.findAll(function (err, employees) {
+    User.findAll(function (err, user) {
         if (err) {
             res.status(500).json({ error: true, message: 'Internal server error' });
         } else {
-            res.status(200).json({ status: 200, data: employees });
+            res.status(200).json({ status: 200, data: user });
         }
     });
 };
@@ -45,14 +45,14 @@ exports.create = async (req, res) => {
 };
 
 exports.findById = function (req, res) {
-    User.findById(req.params.id, function (err, employee) {
+    User.findById(req.params.id, function (err, user) {
         if (err) {
-            res.status(500).json({ error: true, message: 'Error finding employee' });
+            res.status(500).json({ error: true, message: 'Error finding user' });
         } else {
-            if (employee.length === 0) {
-                res.status(404).json({ error: true, message: 'Employee not found' });
+            if (user.length === 0) {
+                res.status(404).json({ error: true, message: 'user not found' });
             } else {
-                res.status(200).json({ status: 200, data: employee });
+                res.status(200).json({ status: 200, data: user });
             }
         }
     });
@@ -62,14 +62,14 @@ exports.update = function (req, res) {
     if (Object.keys(req.body).length === 0) {
         res.status(400).json({ error: true, message: 'Please provide all required fields' });
     } else {
-        User.update(req.params.id, new Employee(req.body), function (err, employee) {
+        User.update(req.params.id, new user(req.body), function (err, user) {
             if (err) {
-                res.status(500).json({ error: true, message: 'Error updating employee' });
+                res.status(500).json({ error: true, message: 'Error updating user' });
             } else {
-                if (employee.affectedRows === 0) {
-                    res.status(404).json({ error: true, message: 'Employee not found' });
+                if (user.affectedRows === 0) {
+                    res.status(404).json({ error: true, message: 'user not found' });
                 } else {
-                    res.status(200).json({ error: false, message: 'Employee successfully updated', status: 200 });
+                    res.status(200).json({ error: false, message: 'user successfully updated', status: 200 });
                 }
             }
         });
@@ -77,14 +77,14 @@ exports.update = function (req, res) {
 };
 
 exports.delete = function (req, res) {
-    User.delete(req.params.id, function (err, employee) {
+    User.delete(req.params.id, function (err, user) {
         if (err) {
-            res.status(500).json({ error: true, message: 'Error deleting employee' });
+            res.status(500).json({ error: true, message: 'Error deleting user' });
         } else {
-            if (employee.affectedRows === 0) {
-                res.status(404).json({ error: true, message: 'Employee not found' });
+            if (user.affectedRows === 0) {
+                res.status(404).json({ error: true, message: 'user not found' });
             } else {
-                res.status(200).json({ error: false, message: 'Employee successfully deleted', status: 200 });
+                res.status(200).json({ error: false, message: 'user successfully deleted', status: 200 });
             }
         }
     });

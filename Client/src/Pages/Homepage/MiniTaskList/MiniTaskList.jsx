@@ -4,9 +4,9 @@ import IndivMiniTask from "./IndivMiniTask/IndivMiniTask";
 
 function MiniTaskList({ miniTasks }) {
   return (
-    <div className="minitasklist-container">
-      <h2 className="minitask-list-title">Personal Tasks</h2>
-      <div className="minitask-list-content">
+    <div className="mtl-container">
+      <h2 className="mtl-title">Personal Tasks</h2>
+      <div className="mtl-content">
         {miniTasks && Array.isArray(miniTasks) ? (
           miniTasks.map((task, index) => (
             <IndivMiniTask key={index} task={task} />
@@ -20,3 +20,5 @@ function MiniTaskList({ miniTasks }) {
 }
 
 export default MiniTaskList;
+
+// refer to webdev2 to do list activity

@@ -14,7 +14,7 @@ function Homepage() {
   const [tasks, setTasks] = useState([
     { name: "Task 1" },
     { name: "Task 2" },
-    { name: "Task 3" },
+    { name: "Do ToDoList Activity from Sir Patrick" },
   ]);
 
   // WHILE WAITING FOR BACKEND

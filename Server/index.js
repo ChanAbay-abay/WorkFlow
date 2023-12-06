@@ -1,12 +1,11 @@
 
-
 // Import necessary modules
 var cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// Import employeeRoutes
-const employeeRoutes = require('./src/routes/employee.routes')
+// Import userRoutes
+const userRoutes = require('./src/routes/user.routes')
 
 // Create Express app
 const app = express();
@@ -16,8 +15,8 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
 
-// Use the employeeRoutes for '/api/v1/employees' path
-app.use('/api/v1/employees', employeeRoutes);
+// Use the userRoutes for '/api/v1/user' path
+app.use('/api/v1/user', userRoutes);
 
 // Start the server
 app.listen(port, () => {

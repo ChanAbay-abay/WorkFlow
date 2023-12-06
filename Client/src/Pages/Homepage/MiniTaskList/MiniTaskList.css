@@ -1,13 +1,14 @@
-.minitask-list-title {
+.mtl-title {
     color: white;
     margin-bottom: 1vh;
 }
 
-.minitask-list-content {
+.mtl-content {
     background-color: white;
     /* height: 100%; */
     height: 64.5vh;
     width: 100%;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
+    overflow-y: auto;
 }
