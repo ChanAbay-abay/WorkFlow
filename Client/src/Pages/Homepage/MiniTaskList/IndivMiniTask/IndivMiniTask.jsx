@@ -19,7 +19,7 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
       } else {
         updateTask(task.id, task.name, task.description, newCompletedStatus);
       }
-    }, 500); // Adjust this timeout duration to match your animation duration
+    }, 500); //time out duration
   };
 
   const handleNameChange = (e) => {
