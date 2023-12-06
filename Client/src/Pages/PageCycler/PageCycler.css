@@ -1,0 +1,18 @@
+.pagecycler-main-container {
+    display: flex;
+    height: 100vh;
+}
+
+.nav {
+    background-color: inherit;
+}
+
+.pagecycler-content {
+    flex-grow: 1;
+    /* padding: 20px; */
+    margin-left: 16rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    /* background-color: gray; */
+}

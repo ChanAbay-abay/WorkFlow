@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.center-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background: transparent;
+}
+
+.left {
+    background-color: #F4F4F6;
+    height: 40rem;
+    width: 35rem;
+    margin: 2px;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    padding: 25px;
+    position: relative;
+}
+
+.right {
+    background-color: #F4F4F6;
+    height: 40rem;
+    width: 15rem;
+    margin: 2px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    background-color: transparent;
+}
+
+.log-sign {
+    background-color: transparent;
+    display: flex;
+}
+
+.log-sign .log {
+    margin-right: 2rem;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.divider {
+    width: 5px;
+    height: 65px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.sign {
+    margin-left: 2rem;
+    font-size: 45px;
+    font-weight: 400;
+}
+
+.sign a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+.form {
+    margin-top: 25%;
+    background-color: transparent;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.form h2 {
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+.bottom {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 27%;
+    margin-bottom: 30px;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+}
+
+.b-left {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.b-right {
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.b-right button {
+    width: 7rem;
+    height: 4rem;
+    border-radius: 16px;
+    cursor: pointer;
+    background-color: white;
+    color: #0E0F22;
+    font-size: 20px;
+    border: 1px solid #0E0F22;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.b-right button:hover {
+    background-color: #0E0F22;
+    color: white;
+}
+
+.logos {
+    margin-top: 25px;
+    width: 15px;
+    background-color: transparent;
+}
+
+.logo {
+    width: 200px;
+    margin-left: -90px;
+    background-color: transparent;
+}
+
+.r-middle {
+    background-color: transparent;
+    text-align: center;
+}
+
+.r-bottom {
+    background-color: transparent;
+    text-align: center;
+    /* Center text */
+    margin-top: 25px;
+}
+
+.r-bottom p {
+    margin-bottom: 10px;
+}
+
+span {
+    background-color: transparent;
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

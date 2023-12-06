@@ -1,0 +1,28 @@
+.sign {
+  margin-left: 2rem;
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.form {
+  margin-top: 1%;
+  background-color: transparent;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.form h2 {
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: transparent;
+}
