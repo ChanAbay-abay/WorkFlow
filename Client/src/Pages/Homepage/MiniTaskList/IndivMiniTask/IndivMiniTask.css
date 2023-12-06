@@ -1,7 +1,7 @@
 .imt-container {
     display: flex;
     align-items: center;
-    height: 40px;
+    height: 6vh;
     padding-left: 10px;
 }
 
@@ -15,4 +15,35 @@
     height: 1px;
     width: 100%;
     background-color: gray;
+}
+
+.imt-checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin-right: 15px;
+    border: 2px solid #ddd;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.imt-checkbox:checked {
+    background-color: green;
+    /* Checked color */
+    border-color: green;
+    /* Border color when checked */
+    /* Custom checkmark style */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.imt-name.completed {
+    text-decoration: line-through;
+    /* Strikethrough style for completed tasks */
+    color: #808080;
+    /* Grayed out text */
 }

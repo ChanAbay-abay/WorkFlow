@@ -10,23 +10,8 @@ import { useState } from "react";
 function Homepage() {
   const username = "user_name";
 
-  // WHILE WAITING FOR BACKEND
-  const [tasks, setTasks] = useState([
-    { name: "Task 1" },
-    { name: "Task 2" },
-    { name: "Do ToDoList Activity from Sir Patrick" },
-  ]);
-
-  // WHILE WAITING FOR BACKEND
-  const addTask = () => {
-    const newTask = { name: `New Task ${tasks.length + 1}` };
-    setTasks([...tasks, newTask]);
-  };
-
   return (
     <div className="homepage-container">
-      {/* <h1>homepage</h1> */}
-
       <div className="homepage-greet">
         <img src={userDefault} alt="" className="homepage-greet-avatar" />
         <h1>Hello {username},</h1>
@@ -37,8 +22,7 @@ function Homepage() {
       </div>
 
       <div className="homepage-miniTaskList">
-        <MiniTaskList miniTasks={tasks} />
-        <button onClick={addTask}>Add Task</button>
+        <MiniTaskList />
       </div>
 
       <div className="report-calendar-container">

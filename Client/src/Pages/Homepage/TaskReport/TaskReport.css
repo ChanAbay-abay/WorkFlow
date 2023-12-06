@@ -9,13 +9,11 @@
 }
 
 .TR-linechart-container {
-    /* width: 500px; */
-    /* height: 200px; */
-    /* margin: 0 auto; */
     background-color: white;
-    /* border-radius: 16px; */
     border-bottom-right-radius: 16px;
     border-bottom-left-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .TR-linechart-container .recharts-cartesian-grid-horizontal line {

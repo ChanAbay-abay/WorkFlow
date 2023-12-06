@@ -1,9 +1,16 @@
-.homepage-container {
+/* .homepage-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* Adjust as needed */
     align-items: flex-start;
+    flex-direction: row;
+} */
+
+.homepage-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .homepage-greet {
@@ -25,7 +32,7 @@
 
 .homepage-greet h1 {
     color: white;
-    margin-left: 50px;
+    margin-left: 3vh;
     font-size: 4vh;
 }
 
@@ -51,6 +58,7 @@
     display: flex;
     width: 59%;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .homepage-taskreport {
