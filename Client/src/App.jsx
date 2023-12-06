@@ -22,7 +22,7 @@ function App() {
     <div className="center-area">
       <div className="left">
         {currentView === "login" && <LogIn />}
-        {currentView === "signup" && <SignUp />}
+        {currentView === "signup" && <SignUp setCurrentView={setCurrentView} />}
       </div>
 
       <div className="right">
@@ -40,14 +40,16 @@ function App() {
           <p>
             {currentView === "login" ? (
               <>
-                <p>Need an account?</p>
+                {/* <p>Need an account?</p> */}
+                Need an account?
                 <span onClick={switchToSignUp} className="link">
                   Sign Up
                 </span>
               </>
             ) : (
               <>
-                <p>Already have an account? </p>
+                {/* <p>Already have an account? </p> */}
+                Already have an account?
                 <span onClick={switchToLogin} className="link">
                   Log In
                 </span>
