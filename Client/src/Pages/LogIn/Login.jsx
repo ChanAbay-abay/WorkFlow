@@ -4,23 +4,25 @@ import WorkFlowEmblem from "../../Assets/WorkFlowEmblem.png";
 import WorkFlowText from "../../Assets/WorkFlowText.png";
 import { Link } from "react-router-dom";
 
-
 function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/v1/employees/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userEmail: email,
-          userPassword: password,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:3000/api/v1/employees/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userEmail: email,
+            userPassword: password,
+          }),
+        }
+      );
 
       if (response.ok) {
         // Successfully logged in
@@ -67,7 +69,7 @@ function LogIn() {
             <p>forgot password?</p>
           </div>
           <div className="b-right">
-              <button onClick={handleLogin}>Log In</button>
+            <button onClick={handleLogin}>Log In</button>
           </div>
         </div>
       </div>

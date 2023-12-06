@@ -73,7 +73,7 @@ User.delete = function(id,result){
 };
 
 User.findByEmail = function (email, result) {
-    dbConn.query("SELECT * FROM user_table WHERE userEmail = ?", email, function (err, res) {
+    dbConn.query("SELECT * FROM user_table WHERE userEmail = ?", [email], function (err, res) {
         if (err) {
             console.log("error:", err);
             result(err, null);
