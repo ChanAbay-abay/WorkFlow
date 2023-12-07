@@ -2,13 +2,28 @@
     display: flex;
     align-items: center;
     height: 6vh;
-    padding-left: 10px;
+    padding-left: 15px;
+}
+
+.imt-content {
+    width: 100%;
+    padding-right: 15px;
 }
 
 .imt-name {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     font-size: 2vh;
     font-weight: 300;
+}
+
+.imt-name-deadline {
+    display: flex;
+    justify-content: space-between;
+}
+
+.imt-content p {
+    color: #808080;
+    font-size: 0.8rem;
 }
 
 .imt-bottom-divider {
