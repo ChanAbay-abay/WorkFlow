@@ -68,18 +68,23 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
           checked={isCompleted}
         />
         {isEditing ? (
-          <div>
-            <input type="text" value={editedName} onChange={handleNameChange} />
-            <textarea
-              value={editedDescription}
-              onChange={handleDescriptionChange}
-            />
-            <input
-              type="date"
-              value={editedDeadline}
-              onChange={handleDeadlineChange}
-            />
-            <button onClick={saveChanges}>Save</button>
+          <div className="imt-editing">
+            {/* make it save when the user clicks off */}
+            <button onClick={saveChanges} className="imt-save-edit-task">Save</button>
+            <div className="imt-editing-left">
+              <input type="text" value={editedName} onChange={handleNameChange} />
+              <textarea
+                value={editedDescription}
+                onChange={handleDescriptionChange}
+              />
+            </div>
+            <div className="imt-editing-right">
+              <input
+                type="date"
+                value={editedDeadline}
+                onChange={handleDeadlineChange}
+              />
+            </div>
           </div>
         ) : (
           <div className="imt-content" onClick={() => setIsEditing(true)}>

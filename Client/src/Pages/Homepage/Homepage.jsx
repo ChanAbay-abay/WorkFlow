@@ -12,28 +12,34 @@ function Homepage() {
 
   return (
     <div className="homepage-container">
-      <div className="homepage-greet">
-        <img src={userDefault} alt="" className="homepage-greet-avatar" />
-        <h1>Hello {username},</h1>
-      </div>
-
-      <div className="homepage-join-create">
-        <JoinOrCreateTeam />
-      </div>
-
-      <div className="homepage-miniTaskList">
-        <MiniTaskList />
-      </div>
-
-      <div className="report-calendar-container">
-        <div className="homepage-taskreport">
-          <TaskReport />
+      
+      
+      <div className="homepage-top">
+        <div className="homepage-greet">
+          <img src={userDefault} alt="" className="homepage-greet-avatar" />
+          <h1>Hello {username},</h1>
         </div>
-
-        <div className="homepage-calendar">
-          <HomePageCalendar />
+        <div className="homepage-join-create">
+          <JoinOrCreateTeam />
         </div>
       </div>
+      
+      <div className="homepage-bottom">
+        <div className="homepage-miniTaskList">
+          <MiniTaskList />
+        </div>
+
+        <div className="report-calendar-container">
+          <div className="homepage-taskreport">
+            <TaskReport />
+          </div>
+
+          <div className="homepage-calendar">
+            <HomePageCalendar />
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 }

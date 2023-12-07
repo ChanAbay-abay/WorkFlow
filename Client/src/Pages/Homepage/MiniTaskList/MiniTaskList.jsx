@@ -82,28 +82,36 @@ function MiniTaskList() {
           />
         ))}
         {showAddTask ? (
+          // can make form a component
+          // add the circle also
           <form onSubmit={addTask} className="mtl-add-task-form">
-            <input
-              type="text"
-              value={newTaskName}
-              onChange={(e) => setNewTaskName(e.target.value)}
-              placeholder="Enter new task name"
-              className="mtl-add-task-taskname"
-            />
-            <input
-              type="text"
-              value={newTaskDescription}
-              onChange={(e) => setNewTaskDescription(e.target.value)}
-              placeholder="Enter task description"
-              className="mtl-add-task-taskdesc"
-            />
+            <div className="mtl-add-task-button">
+              <button type="submit">Add Task</button>
+            </div>
+            <div className="mtl-add-task-left">
+              <input
+                type="text"
+                value={newTaskName}
+                onChange={(e) => setNewTaskName(e.target.value)}
+                placeholder="Enter new task name"
+                className="mtl-add-task-taskname"
+              />
+              <input
+                type="text"
+                value={newTaskDescription}
+                onChange={(e) => setNewTaskDescription(e.target.value)}
+                placeholder="Enter task description"
+                className="mtl-add-task-taskdesc"
+              />
+            </div>
+            
             <input
               type="date"
               value={newTaskDeadline}
               onChange={(e) => setNewTaskDeadline(e.target.value)}
               className="mtl-add-task-deadline"
             />
-            <button type="submit">Add Task</button>
+            
           </form>
         ) : (
           <div className="mtl-addtask">
