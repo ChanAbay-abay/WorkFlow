@@ -5,6 +5,7 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(task.name);
   const [editedDescription, setEditedDescription] = useState(task.description);
+  const [editedDeadline, setEditedDeadline] = useState(task.deadline);
   const [isCompleted, setIsCompleted] = useState(task.completed);
   let checkboxTimeout;
 
@@ -17,9 +18,15 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
       if (newCompletedStatus) {
         onRemoveTask(task.id);
       } else {
-        updateTask(task.id, task.name, task.description, newCompletedStatus);
+        updateTask(
+          task.id,
+          task.name,
+          task.description,
+          task.deadline,
+          newCompletedStatus
+        );
       }
-    }, 500); //time out duration
+    }, 500);
   };
 
   const handleNameChange = (e) => {
@@ -30,8 +37,18 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
     setEditedDescription(e.target.value);
   };
 
+  const handleDeadlineChange = (e) => {
+    setEditedDeadline(e.target.value);
+  };
+
   const saveChanges = () => {
-    updateTask(task.id, editedName, editedDescription, isCompleted);
+    updateTask(
+      task.id,
+      editedName,
+      editedDescription,
+      editedDeadline,
+      isCompleted
+    );
     setIsEditing(false);
   };
 
@@ -57,14 +74,24 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
               value={editedDescription}
               onChange={handleDescriptionChange}
             />
+            <input
+              type="date"
+              value={editedDeadline}
+              onChange={handleDeadlineChange}
+            />
             <button onClick={saveChanges}>Save</button>
           </div>
         ) : (
-          <div onClick={() => setIsEditing(true)}>
-            <h2 className={`imt-name ${isCompleted ? "completed" : ""}`}>
-              {task.name}
-            </h2>
-            <p>{task.description}</p>
+          <div className="imt-content" onClick={() => setIsEditing(true)}>
+            <div className="imt-name-deadline">
+              <h2 className={`imt-name ${isCompleted ? "completed" : ""}`}>
+                {task.name}
+              </h2>
+              <div className="imt-deadline">
+                <p>{editedDeadline}</p>
+              </div>
+            </div>
+            <p className="imt-desc">{task.description}</p>
           </div>
         )}
       </div>
