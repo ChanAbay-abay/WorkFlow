@@ -3,33 +3,14 @@
     align-items: center;
     height: 6vh;
     padding-left: 15px;
-}
-
-.imt-content {
-    width: 100%;
     padding-right: 15px;
 }
 
-.imt-name {
-    /* margin-left: 10px; */
-    font-size: 2vh;
-    font-weight: 300;
-}
-
-.imt-name-deadline {
+.imt-content {
     display: flex;
-    justify-content: space-between;
-}
-
-.imt-content p {
-    color: #808080;
-    font-size: 0.8rem;
-}
-
-.imt-bottom-divider {
-    height: 1px;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
-    background-color: gray;
 }
 
 .imt-checkbox {
@@ -56,4 +37,27 @@
 .imt-name.completed {
     text-decoration: line-through;
     color: #808080;
+}
+
+.imt-name {
+    font-size: 2vh;
+    font-weight: 300;
+}
+
+.imt-content p {
+    color: #808080;
+    font-size: 0.8rem;
+}
+
+.imt-task-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.imt-bottom-divider {
+    height: 1px;
+    width: 100%;
+    background-color: gray;
 }

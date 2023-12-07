@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./MiniTaskList.css";
 import IndivMiniTask from "./IndivMiniTask/IndivMiniTask";
+import AddTaskForm from "./AddTaskForm/AddTaskForm";
 
 function MiniTaskList() {
   const [tasks, setTasks] = useState([
@@ -23,23 +24,11 @@ function MiniTaskList() {
       id: 3,
     },
   ]);
-  const [newTaskName, setNewTaskName] = useState("");
-  const [newTaskDescription, setNewTaskDescription] = useState("");
-  const [newTaskDeadline, setNewTaskDeadline] = useState("");
   const [showAddTask, setShowAddTask] = useState(false);
 
-  const addTask = (event) => {
-    event.preventDefault();
-    const newTask = {
-      name: newTaskName,
-      description: newTaskDescription,
-      deadline: newTaskDeadline,
-      id: Date.now(),
-    };
+  const addTask = (name, description, deadline) => {
+    const newTask = { name, description, deadline, id: Date.now() };
     setTasks([...tasks, newTask]);
-    setNewTaskName("");
-    setNewTaskDescription("");
-    setNewTaskDeadline("");
     setShowAddTask(false);
   };
 
@@ -69,6 +58,11 @@ function MiniTaskList() {
     );
   };
 
+  // Define the handleCancel function
+  const handleCancel = () => {
+    setShowAddTask(false);
+  };
+
   return (
     <div className="mtl-container">
       <h2 className="mtl-title">Personal Tasks</h2>
@@ -82,31 +76,9 @@ function MiniTaskList() {
           />
         ))}
         {showAddTask ? (
-          <form onSubmit={addTask} className="mtl-add-task-form">
-            <input
-              type="text"
-              value={newTaskName}
-              onChange={(e) => setNewTaskName(e.target.value)}
-              placeholder="Enter new task name"
-              className="mtl-add-task-taskname"
-            />
-            <input
-              type="text"
-              value={newTaskDescription}
-              onChange={(e) => setNewTaskDescription(e.target.value)}
-              placeholder="Enter task description"
-              className="mtl-add-task-taskdesc"
-            />
-            <input
-              type="date"
-              value={newTaskDeadline}
-              onChange={(e) => setNewTaskDeadline(e.target.value)}
-              className="mtl-add-task-deadline"
-            />
-            <button type="submit">Add Task</button>
-          </form>
+          <AddTaskForm onAddTask={addTask} onCancel={handleCancel} />
         ) : (
-          <div className="mtl-addtask">
+          <div className="mtl-button-div">
             <button
               onClick={() => setShowAddTask(true)}
               className="mtl-show-add-form-btn"

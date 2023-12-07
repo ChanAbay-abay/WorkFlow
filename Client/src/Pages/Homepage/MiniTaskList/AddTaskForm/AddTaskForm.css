@@ -1,0 +1,71 @@
+.mtl-add-task-form {
+    display: flex;
+    justify-content: space-between;
+    height: 6vh;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mtl-add-name-desc {
+    display: flex;
+    flex-direction: column;
+}
+
+.mtl-add-deadline-submit-btn {
+    display: flex;
+    flex-direction: column;
+}
+
+.mtl-add-name-desc input {
+    border: 0px;
+    background-color: transparent;
+}
+
+.mtl-add-taskname {
+    font-size: 2vh;
+}
+
+.mtl-add-taskdesc {
+    font-size: 0.8rem;
+}
+
+.mtl-add-deadline {
+    border: 0px;
+    color: #808080;
+}
+
+.imt-bottom-divider {
+    height: 1px;
+    width: 100%;
+    background-color: gray;
+}
+
+.mtl-add-button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.mtl-add-check-btn,
+.mtl-add-cancel-btn {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mtl-add-cancel-btn {
+    background-color: #dc3545;
+    margin-left: 5px;
+}
+
+.mtl-add-check-btn:hover {
+    background-color: #0056b3;
+}
+
+.mtl-add-cancel-btn:hover {
+    background-color: #c82333;
+}
