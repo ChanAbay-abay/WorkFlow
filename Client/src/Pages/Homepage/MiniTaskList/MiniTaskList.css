@@ -12,20 +12,11 @@
     overflow-y: auto;
 }
 
-.mtl-addtask {
+.mtl-button-div {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
+    justify-content: center;
+    padding: 10px;
 }
-
-.mtl-add-task-form {}
-
-.mtl-add-task-taskname {}
-
-.mtl-add-task-taskdesc {}
-
-.mtl-add-task-deadline {}
 
 .mtl-show-add-form-btn {
     width: 40px;
@@ -47,11 +38,4 @@
 
 .mtl-show-add-form-btn:focus {
     outline: none;
-}
-
-.mtl-addtask-divider {
-    height: 1px;
-    width: 100%;
-    background-color: gray;
-    margin-top: 10px;
 }

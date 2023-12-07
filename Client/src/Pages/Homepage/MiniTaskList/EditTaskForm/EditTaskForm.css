@@ -1,0 +1,62 @@
+.mtl-edit-task-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 6vh;
+
+}
+
+.mtl-edit-name-desc {
+    display: flex;
+    flex-direction: column;
+}
+
+.mtl-edit-date-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.mtl-edit-name-desc input {
+    border: 0px;
+}
+
+.mtl-edit-taskname {
+    font-size: 2vh;
+    color: #808080;
+}
+
+.mtl-edit-taskdesc {
+    font-size: 0.8rem;
+    color: #808080;
+}
+
+.mtl-edit-deadline {
+    border: 0;
+    color: #808080;
+}
+
+.mtl-edit-check-btn,
+.mtl-edit-cancel-btn {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mtl-edit-cancel-btn {
+    background-color: #dc3545;
+    margin-left: 5px;
+}
+
+.mtl-edit-check-btn:hover {
+    background-color: #0056b3;
+}
+
+.mtl-edit-cancel-btn:hover {
+    background-color: #c82333;
+}

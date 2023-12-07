@@ -1,62 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./IndivMiniTask.css";
+import EditTaskForm from "../EditTaskForm/EditTaskForm";
 
 function IndivMiniTask({ task, updateTask, onRemoveTask }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedName, setEditedName] = useState(task.name);
-  const [editedDescription, setEditedDescription] = useState(task.description);
-  const [editedDeadline, setEditedDeadline] = useState(task.deadline);
-  const [isCompleted, setIsCompleted] = useState(task.completed);
-  let checkboxTimeout;
 
   const handleCheckboxChange = () => {
-    const newCompletedStatus = !isCompleted;
-    setIsCompleted(newCompletedStatus);
+    const newCompletedStatus = !task.completed;
 
-    clearTimeout(checkboxTimeout);
-    checkboxTimeout = setTimeout(() => {
-      if (newCompletedStatus) {
-        onRemoveTask(task.id);
-      } else {
-        updateTask(
-          task.id,
-          task.name,
-          task.description,
-          task.deadline,
-          newCompletedStatus
-        );
-      }
-    }, 500);
-  };
-
-  const handleNameChange = (e) => {
-    setEditedName(e.target.value);
-  };
-
-  const handleDescriptionChange = (e) => {
-    setEditedDescription(e.target.value);
-  };
-
-  const handleDeadlineChange = (e) => {
-    setEditedDeadline(e.target.value);
-  };
-
-  const saveChanges = () => {
     updateTask(
       task.id,
-      editedName,
-      editedDescription,
-      editedDeadline,
-      isCompleted
+      task.name,
+      task.description,
+      task.deadline,
+      newCompletedStatus
     );
-    setIsEditing(false);
-  };
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(checkboxTimeout);
-    };
-  }, []);
+    if (newCompletedStatus) {
+      setTimeout(() => onRemoveTask(task.id), 400); //ms for animation
+    }
+  };
 
   return (
     <div className="imt-wrapper">
@@ -65,33 +28,27 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
           type="checkbox"
           className="imt-checkbox"
           onChange={handleCheckboxChange}
-          checked={isCompleted}
+          checked={task.completed}
         />
         {isEditing ? (
-          <div>
-            <input type="text" value={editedName} onChange={handleNameChange} />
-            <textarea
-              value={editedDescription}
-              onChange={handleDescriptionChange}
-            />
-            <input
-              type="date"
-              value={editedDeadline}
-              onChange={handleDeadlineChange}
-            />
-            <button onClick={saveChanges}>Save</button>
-          </div>
+          <EditTaskForm
+            task={task}
+            onSave={updateTask}
+            onCancel={() => setIsEditing(false)}
+          />
         ) : (
           <div className="imt-content" onClick={() => setIsEditing(true)}>
-            <div className="imt-name-deadline">
-              <h2 className={`imt-name ${isCompleted ? "completed" : ""}`}>
-                {task.name}
-              </h2>
+            <div className="imt-task-details">
+              <div className="imt-name-desc">
+                <h2 className={`imt-name ${task.completed ? "completed" : ""}`}>
+                  {task.name}
+                </h2>
+                <p className="imt-desc">{task.description}</p>
+              </div>
               <div className="imt-deadline">
-                <p>{editedDeadline}</p>
+                <p>{task.deadline}</p>
               </div>
             </div>
-            <p className="imt-desc">{task.description}</p>
           </div>
         )}
       </div>
