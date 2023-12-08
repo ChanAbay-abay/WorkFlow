@@ -3,12 +3,12 @@ import "./nav.css";
 import WorkFlowEmblem from "../../Assets/WorkFlowEmblem.png";
 import WorkFlowText from "../../Assets/WorkFlowText.png";
 import { Link } from "react-router-dom";
-import PageCycler from "../../Pages/PageCycler/PageCycler";
 import userWhite from "../../Assets/ICONS/userWhite.png";
 import groupWhite from "../../Assets/ICONS/groupWhite.png";
 import hasbulla from "../../Assets/hasbulla.jpg";
 import Personal from "../../Pages/Personal/Personal";
 import Homepage from "../../Pages/Homepage/Homepage";
+import TeamOne from "../../Pages/Teams/TeamOne/TeamOne";
 
 function NavBar() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -54,7 +54,7 @@ function NavBar() {
               <div className="dropdown-content" onClick={stopPropagation}>
                 <div className="nav-team-list">
                   <div className="nav-each-team">
-                    <Link to={{}}>
+                    <Link to="/teamone">
                       <img src={hasbulla} alt="" className="nav-teamImage" />
                       <h3>team1</h3>
                     </Link>

@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LogIn from "./Components/LogIn/Login";
 import SignUp from "./Components/SignUp/SignUp";
 import Personal from "./Pages/Personal/Personal";
-import PageCycler from "./Pages/PageCycler/PageCycler";
 import Homepage from "./Pages/Homepage/Homepage";
+import TeamOne from "./Pages/Teams/TeamOne/TeamOne";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
@@ -25,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/signup" Component={SignUp}></Route>
         <Route path="/homepage" Component={Homepage}></Route>
         <Route path="/personal" Component={Personal}></Route>
+        <Route path="/teamone" Component={TeamOne}></Route>
       </Routes>
     </Router>
   </div>
