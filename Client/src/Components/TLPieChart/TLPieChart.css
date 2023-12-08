@@ -1,0 +1,12 @@
+.tl-piechart-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.piechart-container {
+    width: 10.5rem;
+    height: 10.5rem;
+
+}

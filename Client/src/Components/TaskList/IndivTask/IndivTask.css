@@ -1,0 +1,65 @@
+.it-container {
+    display: flex;
+    align-items: center;
+    height: 6vh;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.it-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    color: black;
+}
+
+.it-checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin-right: 15px;
+    /* margin-left: 15px; */
+    border: 2px solid #ddd;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.it-checkbox:checked {
+    background-color: green;
+    border-color: green;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.it-name.completed {
+    text-decoration: line-through;
+    color: #808080;
+}
+
+.it-name {
+    font-size: 2vh;
+    font-weight: 300;
+}
+
+.it-content p {
+    color: #808080;
+    font-size: 0.8rem;
+}
+
+.it-task-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.it-bottom-divider {
+    height: 1px;
+    width: 100%;
+    background-color: gray;
+}
