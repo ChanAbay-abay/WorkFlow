@@ -9,4 +9,19 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ptl-content-top,
+.ptl-content-bottom {
+    background-color: #0E0F22;
+    border-radius: 16px;
+    height: 19.5%;
+    padding: 15px;
+}
+
+.ptl-content-bottom {
+    height: 79.5%;
 }
