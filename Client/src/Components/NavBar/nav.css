@@ -43,6 +43,10 @@
     font-weight: 400;
 }
 
+.nav-personal{
+    text-decoration: none;
+}
+
 .dropdown-content {
     position: absolute;
     top: 100%;

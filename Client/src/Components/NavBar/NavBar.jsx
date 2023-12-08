@@ -38,7 +38,7 @@ function NavBar() {
           <Link to="/personal">
             <div className="nav-list-box">
               <img src={userWhite} alt="" className="nav-list-icon" />
-              <h2>Personal</h2>
+              <h2 className="nav-personal">Personal</h2>
             </div>
           </Link>
 

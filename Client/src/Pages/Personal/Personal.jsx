@@ -11,12 +11,9 @@ function Personal() {
         <NavBar></NavBar>
       </div>
       <div className="ptl-content">
-        <div className="ptl-content-top">
-          <h1>top</h1>
-        </div>
-        <div className="ptl-content-bottom">
-          <h1>bottom</h1>
-        </div>
+        <div className="ptl-content-left"><h1>left</h1></div>
+        <div className="ptl-content-right"><h1>right</h1></div>
+
       </div>
     </div>
   );
