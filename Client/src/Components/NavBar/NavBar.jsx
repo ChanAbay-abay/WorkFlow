@@ -3,11 +3,12 @@ import "./nav.css";
 import WorkFlowEmblem from "../../Assets/WorkFlowEmblem.png";
 import WorkFlowText from "../../Assets/WorkFlowText.png";
 import { Link } from "react-router-dom";
-import PageCycler from "../PageCycler/PageCycler";
+import PageCycler from "../../Pages/PageCycler/PageCycler";
 import userWhite from "../../Assets/ICONS/userWhite.png";
 import groupWhite from "../../Assets/ICONS/groupWhite.png";
 import hasbulla from "../../Assets/hasbulla.jpg";
-import Personal from "../Personal/Personal";
+import Personal from "../../Pages/Personal/Personal";
+import Homepage from "../../Pages/Homepage/Homepage";
 
 function NavBar() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -24,7 +25,7 @@ function NavBar() {
     <>
       <div className="nav-container">
         {/* logo (already links to homepage) */}
-        <Link to={PageCycler}>
+        <Link to="/homepage">
           <div className="nav-logo-container">
             <img className="nav-logo" src={WorkFlowEmblem} alt="" />
             <img className="nav-logo" src={WorkFlowText} alt="" />
@@ -34,7 +35,7 @@ function NavBar() {
         <div className="nav-list">
           {/* personal */}
           {/* NEEDS TO LINK TO PERSONAL TASKS */}
-          <Link to={Personal}>
+          <Link to="/personal">
             <div className="nav-list-box">
               <img src={userWhite} alt="" className="nav-list-icon" />
               <h2>Personal</h2>

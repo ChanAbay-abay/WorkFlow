@@ -1,9 +1,17 @@
 .homepage-container {
     display: flex;
-    flex-direction: column;
+    height: 100vh;
 }
 
-.homepage-top{
+.homepage-content {
+    flex-grow: 1;
+    margin-left: 16rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.homepage-top {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -42,7 +50,7 @@
     border-radius: 16px;
 }
 
-.homepage-bottom{
+.homepage-bottom {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

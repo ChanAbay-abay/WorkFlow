@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../../Components/NavBar/NavBar";
 import "./PageCycler.css";
 import Homepage from "../Homepage/Homepage.jsx";
 import Personal from "../Personal/Personal";
@@ -12,8 +12,8 @@ function PageCycler() {
       </div>
       <div className="pagecycler-content">
         {/* <h1>pagecycler</h1> */}
-        <Homepage></Homepage>
-        {/* <Personal></Personal> */}
+        {/* <Homepage></Homepage> */}
+        <Personal></Personal>
       </div>
     </div>
   );
