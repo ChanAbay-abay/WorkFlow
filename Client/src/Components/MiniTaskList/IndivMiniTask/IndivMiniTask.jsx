@@ -1,26 +1,33 @@
 import React, { useState } from "react";
 import "./IndivMiniTask.css";
 import EditTaskForm from "../EditTaskForm/EditTaskForm";
+import { DoneTask } from "../../../api/request";
 
 function IndivMiniTask({ task, updateTask, onRemoveTask }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleCheckboxChange = () => {
-    const newCompletedStatus = !task.completed;
+    const formData = new FormData();
+    formData.append('taskID',task.id)
+    DoneTask.DONE_TASK(formData)
+    .then(res =>{
+      const task = res.data;
+      if(task){
+        const notDone = res.data?.filter(data => data.isTaskComplete === 'no');
+        const val = notDone?.map((data) =>{
+          return({
+            name: data.taskName,
+            description: data.taskDesc,
+            deadline: data.taskDeadline,
+            id: data.taskID
+          })
+        })
+        setTimeout(() => onRemoveTask(task.id), 400);
+      }
+    })
 
-    updateTask(
-      task.id,
-      task.name,
-      task.description,
-      task.deadline,
-      newCompletedStatus
-    );
-
-    if (newCompletedStatus) {
-      setTimeout(() => onRemoveTask(task.id), 400); //ms for animation
-    }
   };
-
+  console.log(onRemoveTask)
   return (
     <div className="imt-wrapper">
       <div className="imt-container">
