@@ -14,16 +14,88 @@
     justify-content: space-between;
 }
 
-.ptl-content-left, .ptl-content-right{
+.ptl-content-left,
+.ptl-content-right {
     background-color: #0E0F22;
+    border-radius: 16px;
+    padding: 30px;
+    color: white;
+}
+
+.ptl-content-left {
+    position: relative;
+    width: 14.5%;
     padding: 15px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
+
+.ptl-left-pfp-con {
+    margin-top: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ptl-piechart-title {
+    text-align: center;
+}
+
+.ptl-left-pfp {
+    width: 80%;
     border-radius: 16px;
 }
 
-.ptl-content-left{
-    width: 19.5%;
+.ptl-content-right {
+    width: 84.5%;
 }
 
-.ptl-content-right{
-    width: 79.5%;
+.ptl-right-title {
+    margin-left: 35px;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.ptl-right-tl-container {
+    background-color: white;
+    height: 92.5%;
+    border-radius: 16px;
+}
+
+.ptl-left-piechart-con {
+    margin-top: 5vh;
+}
+
+.ptl-content-left-expanded {
+    width: 14.5%;
+}
+
+.toggle-panel-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.ptl-content-left-shrunk .toggle-panel-btn {
+    right: 3px;
+}
+
+.ptl-content-left-shrunk {
+    overflow: hidden;
+    width: 1rem;
+}
+
+.ptl-content-right-expanded {
+    width: 84.5%;
+}
+
+.ptl-content-right-shrunk {
+    width: 97%;
 }

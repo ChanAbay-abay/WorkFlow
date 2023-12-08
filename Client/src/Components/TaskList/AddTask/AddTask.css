@@ -1,0 +1,71 @@
+.at-task-form {
+    display: flex;
+    justify-content: space-between;
+    height: 6vh;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.at-name-desc {
+    display: flex;
+    flex-direction: column;
+}
+
+.at-deadline-submit-btn {
+    display: flex;
+    flex-direction: column;
+}
+
+.at-name-desc input {
+    border: 0px;
+    background-color: transparent;
+}
+
+.at-taskname {
+    font-size: 2vh;
+}
+
+.at-taskdesc {
+    font-size: 0.8rem;
+}
+
+.at-deadline {
+    border: 0px;
+    color: #808080;
+}
+
+.at-bottom-divider {
+    height: 1px;
+    width: 100%;
+    background-color: gray;
+}
+
+.at-button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.at-check-btn,
+.at-cancel-btn {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.at-cancel-btn {
+    background-color: #dc3545;
+    margin-left: 5px;
+}
+
+.at-check-btn:hover {
+    background-color: #0056b3;
+}
+
+.at-cancel-btn:hover {
+    background-color: #c82333;
+}

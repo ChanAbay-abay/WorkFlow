@@ -1,0 +1,62 @@
+.tl-topbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tl-title {
+    color: white;
+    margin-bottom: 1vh;
+}
+
+.tl-content {
+    background-color: white;
+    height: 87.5vh;
+    width: 100%;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    overflow-y: auto;
+}
+
+.tl-button-div {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.tl-show-add-form-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tl-show-add-form-btn:hover {
+    background-color: #0056b3;
+}
+
+.tl-show-add-form-btn:focus {
+    outline: none;
+}
+
+.tl-filters {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.tl-filters label {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.tl-filters input[type="checkbox"] {
+    margin-left: 10px;
+}

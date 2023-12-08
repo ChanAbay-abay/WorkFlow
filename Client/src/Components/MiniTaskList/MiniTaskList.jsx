@@ -94,7 +94,6 @@ function MiniTaskList() {
     })
   };
 
-  // Define the handleCancel function
   const handleCancel = () => {
     setShowAddTask(false);
   };
