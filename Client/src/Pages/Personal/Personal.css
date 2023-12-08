@@ -1,0 +1,12 @@
+.ptl-container {
+    display: flex;
+    height: 100vh;
+}
+
+.ptl-content {
+    flex-grow: 1;
+    margin-left: 16rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}

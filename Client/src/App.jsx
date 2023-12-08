@@ -3,8 +3,8 @@ import "./App.css";
 import WorkFlowEmblem from "./Assets/WorkFlowEmblem.png";
 import WorkFlowText from "./Assets/WorkFlowText.png";
 import { Link } from "react-router-dom";
-import LogIn from "./Pages/LogIn/Login";
-import SignUp from "./Pages/SignUp/SignUp";
+import LogIn from "./Components/LogIn/Login";
+import SignUp from "./Components/SignUp/SignUp";
 import { useState } from "react";
 
 function App() {
