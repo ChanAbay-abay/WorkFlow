@@ -56,15 +56,15 @@ function NavBar() {
                   <div className="nav-each-team">
                     <Link to="/teamone">
                       <img src={hasbulla} alt="" className="nav-teamImage" />
-                      <h3>team1</h3>
+                      <h3>Hasbullas</h3>
                     </Link>
                   </div>
-                  <div className="nav-each-team">
+                  {/* <div className="nav-each-team">
                     <Link to={{}}>
                       <img src={hasbulla} alt="" className="nav-teamImage" />
                       <h3>team2</h3>
                     </Link>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}

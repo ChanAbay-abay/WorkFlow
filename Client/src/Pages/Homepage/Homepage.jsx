@@ -9,7 +9,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import { useState } from "react";
 
 function Homepage() {
-  const username = "user_name";
+  const username = "Panelists";
 
   return (
     <div className="homepage-container">
