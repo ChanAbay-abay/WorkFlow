@@ -93,7 +93,7 @@ function TaskList() {
   return (
     <div className="tl-container">
       <div className="tl-topbar">
-        <h2 className="tl-title">Personal Tasks</h2>
+        <h2 className="tl-title">Task List</h2>
         <div className="tl-filters">
           <label>
             Completed Tasks
