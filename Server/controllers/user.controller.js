@@ -6,8 +6,18 @@ const UserController = {
   createUser: async (req, res) => {
     try {
       const newUser = await User.create(req.body);
-      res.status(201).json(newUser);
+      res.status(201).json({
+        userID: newUser.userID,
+        userName: newUser.userName,
+        userEmail: newUser.userEmail,
+        userPassword: newUser.userPassword,
+        createDate: newUser.createDate,
+      });
     } catch (error) {
+      if (error.name === 'SequelizeValidationError') {
+        // Log validation errors
+        console.error('Validation Errors:', error.errors);
+      }
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
