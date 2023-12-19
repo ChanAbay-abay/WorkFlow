@@ -34,6 +34,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     isTaskComplete:{
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
     }
   })
 
