@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 // connect to db
 db.sequelize
-  .sync({ force: true })
+  .sync()
   .then(() => {
     console.log('Synced db.');
   })
