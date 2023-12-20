@@ -29,80 +29,40 @@ function MiniTaskList() {
 
   const addTask = (name, description, deadline) => {
     const newTask = { name, description, deadline, id: Date.now() };
-    const formData = new FormData();
-    formData.append("taskName", name);
-    formData.append("taskDesc", description);
-    formData.append("taskDeadline", deadline);
-    CreatingTask.CREATE_TASK(formData).then((res) => {
-      const task = res.data;
-      if (task) {
-        const notDone = res.data?.filter(
-          (data) => data.isTaskComplete === "no"
-        );
-        const val = notDone?.map((data) => {
-          return {
-            name: data.taskName,
-            description: data.taskDesc,
-            deadline: data.taskDeadline,
-            id: data.taskID,
-          };
-        });
-        setTasks(val);
-      }
-    });
-    // setTasks([...tasks, newTask]);
+    setTasks([...tasks, newTask]);
     setShowAddTask(false);
   };
-  async function Fetch() {
-    const res = await ListTask.LIST_TASK();
-    const notDone = res.data?.filter((data) => data.isTaskComplete === "no");
-    const val = notDone?.map((data) => {
-      return {
-        name: data.taskName,
-        description: data.taskDesc,
-        deadline: data.taskDeadline,
-        id: data.taskID,
-      };
-    });
-    setTasks(val);
-  }
 
   const removeTask = (taskId) => {
-    Fetch();
+    setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
-  const updateTask = (updatedInfo) => {
-    const formData = new FormData();
-    formData.append("taskID", updatedInfo.taskID);
-    formData.append("taskName", updatedInfo.taskName);
-    formData.append("taskDesc", updatedInfo.taskDesc);
-    formData.append("taskDeadline", updatedInfo.taskDeadline);
-    UpdateTask.UPDATE_TASK(formData).then((res) => {
-      const task = res.data;
-      if (task) {
-        const notDone = res.data?.filter(
-          (data) => data.isTaskComplete === "no"
-        );
-        const val = notDone?.map((data) => {
-          return {
-            name: data.taskName,
-            description: data.taskDesc,
-            deadline: data.taskDeadline,
-            id: data.taskID,
-          };
-        });
-        setTasks(val);
-      }
-    });
+  const updateTask = (
+    taskId,
+    newName,
+    newDescription,
+    newDeadline,
+    newCompleted
+  ) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId
+          ? {
+              ...task,
+              name: newName,
+              description: newDescription,
+              deadline: newDeadline,
+              completed: newCompleted,
+            }
+          : task
+      )
+    );
   };
 
+  // Define the handleCancel function
   const handleCancel = () => {
     setShowAddTask(false);
   };
-
-  useEffect(() => {
-    Fetch();
-  }, []);
 
   return (
     <div className="mtl-container">
@@ -110,7 +70,7 @@ function MiniTaskList() {
       <div className="mtl-content">
         {tasks.map((task) => (
           <IndivMiniTask
-            key={task.taskID}
+            key={task.id}
             task={task}
             updateTask={updateTask}
             onRemoveTask={removeTask}
