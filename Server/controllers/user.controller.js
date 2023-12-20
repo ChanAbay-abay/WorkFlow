@@ -44,13 +44,20 @@ const UserController = {
         console.log('Provided Password:', userPassword);
         console.log('Stored Hashed Password:', user.userPassword);
         console.log(user);
-        return res.status(401).json({ error: 'Invalid password', data: isPasswordValid});
+        return res.status(401).json({ error: 'Invalid password', data: isPasswordValid });
       }
 
-      // Generate JWT token
-      const token = jwt.sign({ userId: user.userID, userEmail: user.userEmail }, "SECRET_KEY", {
-        expiresIn: '1h', // Token expiration time (adjust as needed)
-      });
+      // Fetch all user data from the database
+      const allUserData = await User.findAll();
+
+      // Generate JWT token with user data in the payload
+      const token = jwt.sign(
+        { user: { id: user.userID, email: user.userEmail, data: allUserData } },
+        "SECRET_KEY",
+        {
+          // expiresIn: '1h', // Token expiration time (adjust as needed)
+        }
+      );
 
       // Send the token in the response
       res.status(200).json({ message: 'Login successful', token });

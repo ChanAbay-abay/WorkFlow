@@ -12,10 +12,6 @@ function AddTaskForm({ onAddTask, onCancel }) {
       alert("Task name cannot be empty.");
       return;
     }
-    if(!newTaskDescription || !newTaskDeadline || !newTaskName){
-      alert("Please fillup all required fields.");
-      return;
-    }
     onAddTask(newTaskName, newTaskDescription, newTaskDeadline);
     resetForm();
   };

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./EditTaskForm.css";
-// import { UpdateTask } from "../../../api/request";
 
 function EditTaskForm({ task, onSave, onCancel }) {
   const [editedName, setEditedName] = useState(task.name);
@@ -14,26 +13,9 @@ function EditTaskForm({ task, onSave, onCancel }) {
       alert("Task name cannot be empty.");
       return;
     }
-    console.log(task);
-    if (!editedDescription || !editedDeadline || !editedName) {
-      alert("Please do not leave blank space.");
-      return;
-    }
-    const updatedName = editedName || task.name;
-    const updatedDesc = editedDescription || task.description;
-    const updatedDeadline = editedDeadline || task.deadline;
-    console.log(updatedName);
-    console.log(updatedDesc);
-    console.log(updatedDeadline);
-    const updatedInfo = {
-      taskName: updatedName,
-      taskDesc: updatedDesc,
-      taskDeadline: updatedDeadline,
-      taskID: task.id,
-    };
-    onSave(updatedInfo);
-    onCancel(false);
+    onSave(task.id, editedName.trim(), editedDescription, editedDeadline);
   };
+
   return (
     <div className="mtl-edit-task-form">
       <div className="mtl-edit-name-desc">
@@ -58,18 +40,10 @@ function EditTaskForm({ task, onSave, onCancel }) {
         />
         <div className="mtl-edit-btn-container">
           {/* TO BE FIXED WITH BACKEND */}
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="mtl-edit-check-btn"
-          >
+          <button onClick={handleSubmit} className="mtl-edit-check-btn">
             &#10003;
           </button>
-          <button
-            type="button"
-            onClick={onCancel}
-            className="mtl-edit-cancel-btn"
-          >
+          <button onClick={onCancel} className="mtl-edit-cancel-btn">
             &#10005;
           </button>
         </div>
