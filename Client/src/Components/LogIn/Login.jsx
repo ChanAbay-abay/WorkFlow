@@ -10,7 +10,7 @@ function LogIn() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/v1/user/login", {
+      const response = await fetch("http://localhost:3000/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,13 +22,15 @@ function LogIn() {
       });
 
       if (response.ok) {
-        // Successfully logged in
+        const responseData = await response.json();
         console.log("User logged in successfully");
-        window.location.href = "/homepage";
+        console.log("Token:", responseData.token);
         // Redirect or perform other actions as needed
+        window.location.href = "/homepage";
       } else {
-        // Handle login failure, e.g., display an error message
-        console.error("Error logging in:", response.statusText);
+        const errorData = await response.json();
+        console.error("Error logging in:", errorData.error);
+        console.error("data passed: ", password);
       }
     } catch (error) {
       console.error("Error:", error.message);
