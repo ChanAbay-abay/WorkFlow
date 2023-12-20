@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./MiniTaskList.css";
 import IndivMiniTask from "./IndivMiniTask/IndivMiniTask";
 import AddTaskForm from "./AddTaskForm/AddTaskForm";
-import { CreatingTask,ListTask,DoneTask,UpdateTask } from "../../api/request";
+// import { CreatingTask,ListTask,DoneTask,UpdateTask } from "../../api/request";
 
 function MiniTaskList() {
   const [tasks, setTasks] = useState([
@@ -33,76 +33,76 @@ function MiniTaskList() {
     formData.append("taskName", name);
     formData.append("taskDesc", description);
     formData.append("taskDeadline", deadline);
-    CreatingTask.CREATE_TASK(formData)
-    .then(res =>{
+    CreatingTask.CREATE_TASK(formData).then((res) => {
       const task = res.data;
-      if(task){
-        const notDone = res.data?.filter(data => data.isTaskComplete === 'no');
-        const val = notDone?.map((data) =>{
-          return({
+      if (task) {
+        const notDone = res.data?.filter(
+          (data) => data.isTaskComplete === "no"
+        );
+        const val = notDone?.map((data) => {
+          return {
             name: data.taskName,
             description: data.taskDesc,
             deadline: data.taskDeadline,
-            id: data.taskID
-          })
-        })
+            id: data.taskID,
+          };
+        });
         setTasks(val);
       }
-    })
+    });
     // setTasks([...tasks, newTask]);
     setShowAddTask(false);
   };
-  async function Fetch(){
+  async function Fetch() {
     const res = await ListTask.LIST_TASK();
-    const notDone = res.data?.filter(data => data.isTaskComplete === 'no');
-    const val = notDone?.map((data) =>{
-      return({
+    const notDone = res.data?.filter((data) => data.isTaskComplete === "no");
+    const val = notDone?.map((data) => {
+      return {
         name: data.taskName,
         description: data.taskDesc,
         deadline: data.taskDeadline,
-        id: data.taskID
-      })
-    })
+        id: data.taskID,
+      };
+    });
     setTasks(val);
   }
-  
+
   const removeTask = (taskId) => {
-    Fetch()
+    Fetch();
   };
 
   const updateTask = (updatedInfo) => {
     const formData = new FormData();
-    formData.append('taskID',updatedInfo.taskID)
-    formData.append('taskName',updatedInfo.taskName)
-    formData.append('taskDesc',updatedInfo.taskDesc)
-    formData.append('taskDeadline',updatedInfo.taskDeadline)
-    UpdateTask.UPDATE_TASK(formData)
-    .then(res =>{
+    formData.append("taskID", updatedInfo.taskID);
+    formData.append("taskName", updatedInfo.taskName);
+    formData.append("taskDesc", updatedInfo.taskDesc);
+    formData.append("taskDeadline", updatedInfo.taskDeadline);
+    UpdateTask.UPDATE_TASK(formData).then((res) => {
       const task = res.data;
-      if(task){
-        const notDone = res.data?.filter(data => data.isTaskComplete === 'no');
-        const val = notDone?.map((data) =>{
-          return({
+      if (task) {
+        const notDone = res.data?.filter(
+          (data) => data.isTaskComplete === "no"
+        );
+        const val = notDone?.map((data) => {
+          return {
             name: data.taskName,
             description: data.taskDesc,
             deadline: data.taskDeadline,
-            id: data.taskID
-          })
-        })
+            id: data.taskID,
+          };
+        });
         setTasks(val);
       }
-    })
+    });
   };
 
   const handleCancel = () => {
     setShowAddTask(false);
   };
 
-  useEffect(() =>{
-      Fetch()
-  },[])
-
-
+  useEffect(() => {
+    Fetch();
+  }, []);
 
   return (
     <div className="mtl-container">
