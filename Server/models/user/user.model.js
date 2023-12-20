@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false
     },
     userPassword: {
-      type: Sequelize.STRING(30),
+      type: Sequelize.STRING,
       allowNull: false
     },
     createDate :{

@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import "./Login.css";
-import WorkFlowEmblem from "../../Assets/WorkFlowEmblem.png";
-import WorkFlowText from "../../Assets/WorkFlowText.png";
-import { Link } from "react-router-dom";
 
 function LogIn() {
   const [email, setEmail] = useState("");

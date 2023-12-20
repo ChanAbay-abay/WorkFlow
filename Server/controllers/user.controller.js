@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const { SECRET_KEY } = require('../config'); // Replace with your actual secret key
 const db = require('../models');
 const User = db.user;
 
@@ -38,17 +37,14 @@ const UserController = {
         return res.status(404).json({ error: 'User not found', data: userEmail });
       }
 
-      
-
-      // Compare the provided password with the hashed password in the database
+      // compare the provided password with the hashed password in the database
       const isPasswordValid = await bcrypt.compare(userPassword, user.userPassword);
 
       if (!isPasswordValid) {
-        console.error('Invalid Password');
-        console.error('Hashed Password Mismatch');
         console.log('Provided Password:', userPassword);
         console.log('Stored Hashed Password:', user.userPassword);
-        return res.status(401).json({ error: 'Invalid password' });
+        console.log(user);
+        return res.status(401).json({ error: 'Invalid password', data: isPasswordValid});
       }
 
       // Generate JWT token
@@ -75,9 +71,10 @@ const UserController = {
       if (existingUser) {
         return res.status(400).json({ error: 'Email already in use' });
       }
-
+      
       // Hash the password before storing it in the database
-      const hashedPassword = await bcrypt.hash(userPassword, 10);
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(userPassword, salt);
 
       // Create a new user
       const newUser = await User.create({
