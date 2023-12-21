@@ -116,7 +116,16 @@ function TaskList() {
       </div>
       <div className="tl-content">
         {displayedTasks.map((task) => (
-          <IndivTask key={task.id} task={task} updateTask={updateTask} />
+          <IndivTask
+            key={task.id}
+            task={task}
+            updateTask={updateTask}
+            onDelete={(taskId) => {
+              setTasks((prevTasks) =>
+                prevTasks.filter((task) => task.id !== taskId)
+              );
+            }}
+          />
         ))}
         {showAddTask && (
           <AddTask onAddTask={addTask} onCancel={() => setShowAddTask(false)} />

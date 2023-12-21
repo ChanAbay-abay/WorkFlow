@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./EditTask.css";
 
-function EditTask({ task, onSave, onCancel }) {
+function EditTask({ task, onSave, onCancel, onDelete }) {
   const [editedName, setEditedName] = useState(task.name);
   const [editedDescription, setEditedDescription] = useState(task.description);
   const [editedDeadline, setEditedDeadline] = useState(task.deadline);
@@ -46,6 +46,9 @@ function EditTask({ task, onSave, onCancel }) {
           </button>
           <button onClick={onCancel} className="et-edit-cancel-btn">
             &#10005;
+          </button>
+          <button onClick={onDelete} className="et-edit-cancel-btn">
+            DEL
           </button>
         </div>
       </div>
