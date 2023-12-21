@@ -17,7 +17,7 @@ function Homepage() {
     const caughtToken = localStorage.getItem("token");
     const token = jwtDecode(caughtToken);
 
-    console.log(caughtToken, token);
+    // console.log(caughtToken, token);
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -27,7 +27,7 @@ function Homepage() {
         if (response.ok) {
           const userData = await response.json();
           setUserData(userData);
-          console.log(userData);
+          // console.log(userData);
         } else {
           console.error("Error fetching user data");
         }

@@ -47,6 +47,12 @@ function EditTask({ task, onSave, onCancel }) {
           <button onClick={onCancel} className="et-edit-cancel-btn">
             &#10005;
           </button>
+          <button
+            onClick={() => onDelete(task.id)}
+            className="et-edit-cancel-btn"
+          >
+            DEL
+          </button>
         </div>
       </div>
     </div>

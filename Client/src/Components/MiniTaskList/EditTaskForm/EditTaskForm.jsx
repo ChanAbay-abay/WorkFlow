@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EditTaskForm.css";
 
-function EditTaskForm({ task, onSave, onCancel }) {
+function EditTaskForm({ task, onSave, onCancel, onDelete }) {
   const [editedName, setEditedName] = useState(task.name);
   const [editedDescription, setEditedDescription] = useState(task.description);
   const [editedDeadline, setEditedDeadline] = useState(task.deadline);
@@ -14,6 +14,10 @@ function EditTaskForm({ task, onSave, onCancel }) {
       return;
     }
     onSave(task.id, editedName.trim(), editedDescription, editedDeadline);
+  };
+
+  const handleDelete = () => {
+    onDelete(task.id);
   };
 
   return (
@@ -41,10 +45,14 @@ function EditTaskForm({ task, onSave, onCancel }) {
         <div className="mtl-edit-btn-container">
           {/* TO BE FIXED WITH BACKEND */}
           <button onClick={handleSubmit} className="mtl-edit-check-btn">
-            &#10003;
+            {/* &#10003; */}
+            SAVE
           </button>
           <button onClick={onCancel} className="mtl-edit-cancel-btn">
             &#10005;
+          </button>
+          <button onClick={handleDelete} className="mtl-edit-cancel-btn">
+            DEL
           </button>
         </div>
       </div>
