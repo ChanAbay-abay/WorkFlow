@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./MiniTaskList.css";
 import IndivMiniTask from "./IndivMiniTask/IndivMiniTask";
 import AddTaskForm from "./AddTaskForm/AddTaskForm";
-// import { CreatingTask,ListTask,DoneTask,UpdateTask } from "../../api/request";
 
 function MiniTaskList() {
   const [tasks, setTasks] = useState([
@@ -10,25 +9,34 @@ function MiniTaskList() {
       name: "Task 1",
       description: "Description 1",
       deadline: "2023-12-07",
+      completed: false, // Add the completed property
       id: 1,
     },
     {
       name: "Task 2",
       description: "Description 2",
       deadline: "2023-12-08",
+      completed: false, // Add the completed property
       id: 2,
     },
     {
       name: "Task 3",
       description: "Description 3",
       deadline: "2023-12-09",
+      completed: false, // Add the completed property
       id: 3,
     },
   ]);
   const [showAddTask, setShowAddTask] = useState(false);
 
   const addTask = (name, description, deadline) => {
-    const newTask = { name, description, deadline, id: Date.now() };
+    const newTask = {
+      name,
+      description,
+      deadline,
+      completed: false,
+      id: Date.now(),
+    };
     setTasks([...tasks, newTask]);
     setShowAddTask(false);
   };
@@ -59,7 +67,6 @@ function MiniTaskList() {
     );
   };
 
-  // Define the handleCancel function
   const handleCancel = () => {
     setShowAddTask(false);
   };

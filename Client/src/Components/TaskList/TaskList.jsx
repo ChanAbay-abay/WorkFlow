@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TaskList.css";
-import { useState, useEffect } from "react";
 import IndivTask from "./IndivTask/IndivTask";
 import AddTask from "./AddTask/AddTask";
 
 function TaskList() {
-  const username = "Username";
   const [tasks, setTasks] = useState([
     {
       name: "Task 1",
@@ -68,6 +66,10 @@ function TaskList() {
     );
   };
 
+  const deleteTask = (taskId) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
+
   const toggleShowCompleted = () => {
     setShowCompletedTasks(!showCompletedTasks);
   };
@@ -103,7 +105,6 @@ function TaskList() {
               onChange={toggleShowCompleted}
             />
           </label>
-          {/* New checkbox for sorting by date */}
           <label>
             Sort by Date
             <input
@@ -116,7 +117,12 @@ function TaskList() {
       </div>
       <div className="tl-content">
         {displayedTasks.map((task) => (
-          <IndivTask key={task.id} task={task} updateTask={updateTask} />
+          <IndivTask
+            key={task.id}
+            task={task}
+            updateTask={updateTask}
+            deleteTask={deleteTask}
+          />
         ))}
         {showAddTask && (
           <AddTask onAddTask={addTask} onCancel={() => setShowAddTask(false)} />

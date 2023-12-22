@@ -10,14 +10,13 @@ import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 function Homepage() {
-  const username = "Panelists";
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const caughtToken = localStorage.getItem("token");
     const token = jwtDecode(caughtToken);
 
-    console.log(caughtToken, token);
+    // console.log(caughtToken, token);
     const fetchData = async () => {
       try {
         const response = await fetch(

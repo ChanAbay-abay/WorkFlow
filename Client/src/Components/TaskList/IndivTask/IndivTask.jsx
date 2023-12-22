@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./IndivTask.css";
 import EditTask from "../EditTask/EditTask";
-import { useState } from "react";
 
-function IndivTask({ task, updateTask }) {
+function IndivTask({ task, updateTask, deleteTask }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(task.completed); // Local state to mirror completed status
-  const handleCheckboxChange = () => {
-    setIsCompleted(!isCompleted); // Update local state immediately for visual feedback
+  const [isCompleted, setIsCompleted] = useState(task.completed);
 
-    // Delay the global state update until after the animation
+  const handleCheckboxChange = () => {
+    setIsCompleted(!isCompleted);
+
     setTimeout(() => {
       updateTask(
         task.id,
         task.name,
         task.description,
         task.deadline,
-        !isCompleted // Use the local state value here
+        !isCompleted
       );
     }, 400);
+  };
+
+  const handleDelete = () => {
+    // Call the deleteTask function with the task ID
+    deleteTask(task.id);
   };
 
   return (
@@ -28,7 +32,7 @@ function IndivTask({ task, updateTask }) {
           type="checkbox"
           className="it-checkbox"
           onChange={handleCheckboxChange}
-          checked={isCompleted} // Use local state for checkbox status
+          checked={isCompleted}
         />
         {isEditing ? (
           <EditTask
@@ -37,6 +41,7 @@ function IndivTask({ task, updateTask }) {
               updateTask(id, name, description, deadline, task.completed);
               setIsEditing(false);
             }}
+            onDelete={handleDelete}
             onCancel={() => setIsEditing(false)}
           />
         ) : (
