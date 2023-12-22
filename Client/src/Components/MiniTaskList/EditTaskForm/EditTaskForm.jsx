@@ -16,6 +16,10 @@ function EditTaskForm({ task, onSave, onCancel, onDelete }) {
     onSave(task.id, editedName.trim(), editedDescription, editedDeadline);
   };
 
+  const handleDelete = () => {
+    onDelete(task.id);
+  };
+
   return (
     <div className="mtl-edit-task-form">
       <div className="mtl-edit-name-desc">
@@ -41,11 +45,13 @@ function EditTaskForm({ task, onSave, onCancel, onDelete }) {
         <div className="mtl-edit-btn-container">
           {/* TO BE FIXED WITH BACKEND */}
           <button onClick={handleSubmit} className="mtl-edit-check-btn">
-            &#10003;
+            {/* &#10003; */}
+            SAVE
           </button>
           <button onClick={onCancel} className="mtl-edit-cancel-btn">
             &#10005;
           </button>
+
           <button
             onClick={() => onDelete(task.id)}
             className="mtl-edit-cancel-btn"

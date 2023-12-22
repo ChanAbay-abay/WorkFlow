@@ -26,7 +26,7 @@ function Homepage() {
         if (response.ok) {
           const userData = await response.json();
           setUserData(userData);
-          console.log(userData);
+          // console.log(userData);
         } else {
           console.error("Error fetching user data");
         }

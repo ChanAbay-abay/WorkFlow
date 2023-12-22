@@ -28,6 +28,10 @@ function TaskList() {
     },
   ]);
 
+  const deleteTask = (taskId) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
+
   const [showAddTask, setShowAddTask] = useState(false);
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
   const [sortByDate, setSortByDate] = useState(false);
