@@ -51,7 +51,11 @@ function EditTaskForm({ task, onSave, onCancel, onDelete }) {
           <button onClick={onCancel} className="mtl-edit-cancel-btn">
             &#10005;
           </button>
-          <button onClick={handleDelete} className="mtl-edit-cancel-btn">
+
+          <button
+            onClick={() => onDelete(task.id)}
+            className="mtl-edit-cancel-btn"
+          >
             DEL
           </button>
         </div>

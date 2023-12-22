@@ -10,7 +10,6 @@ import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 function Homepage() {
-  const username = "Panelists";
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
