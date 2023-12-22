@@ -21,6 +21,11 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
     }
   };
 
+  const handleDeleteTask = (taskId) => {
+    // Frontend deletion logic
+    onRemoveTask(taskId);
+  };
+
   return (
     <div className="imt-wrapper">
       <div className="imt-container">
@@ -35,6 +40,7 @@ function IndivMiniTask({ task, updateTask, onRemoveTask }) {
             task={task}
             onSave={updateTask}
             onCancel={() => setIsEditing(false)}
+            onDelete={handleDeleteTask}
           />
         ) : (
           <div className="imt-content" onClick={() => setIsEditing(true)}>

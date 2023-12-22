@@ -6,8 +6,10 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 function TaskList() {
+
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
+  
   const [showAddTask, setShowAddTask] = useState(false);
   const [showCompletedTasks, setShowCompletedTasks] = useState(false); // Uncomment this line
   // const [sortByDate, setSortByDate] = useState(false);
