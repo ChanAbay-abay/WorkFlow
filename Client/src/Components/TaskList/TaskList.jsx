@@ -1,46 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TaskList.css";
 import IndivTask from "./IndivTask/IndivTask";
 import AddTask from "./AddTask/AddTask";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 function TaskList() {
-  const [tasks, setTasks] = useState([
-    {
-      name: "Task 1",
-      description: "Description 1",
-      deadline: "2023-12-07",
-      completed: false,
-      id: 1,
-    },
-    {
-      name: "Task 2",
-      description: "Description 2",
-      deadline: "2023-12-08",
-      completed: false,
-      id: 2,
-    },
-    {
-      name: "Task 3",
-      description: "Description 3",
-      deadline: "2023-12-09",
-      completed: false,
-      id: 3,
-    },
-  ]);
-
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [showAddTask, setShowAddTask] = useState(false);
-  const [showCompletedTasks, setShowCompletedTasks] = useState(false);
-  const [sortByDate, setSortByDate] = useState(false);
+  const [showCompletedTasks, setShowCompletedTasks] = useState(false); // Uncomment this line
+  // const [sortByDate, setSortByDate] = useState(false);
+
+  useEffect(() => {
+    const caughtToken = localStorage.getItem("token");
+    const token = jwtDecode(caughtToken);
+
+    console.log("Decoded Token:", token);
+
+    // Fetch tasks from the backend when the component mounts
+    axios
+      .get(`http://localhost:3000/api/tasks/all?userID=${token.user.id}`)
+      .then((response) => {
+        setTasks(response.data);
+        console.log("res.data:", response.data);
+        console.log("tasks:", response.tasks);
+        console.log("res:", response);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching tasks:", error);
+        setLoading(false);
+      });
+  }, []);
 
   const addTask = (name, description, deadline) => {
-    const newTask = {
-      name,
-      description,
-      deadline,
-      completed: false,
-      id: Date.now(),
-    };
-    setTasks([...tasks, newTask]);
+    axios.defaults.headers.post["Content-Type"] = "application/json";
+
+    axios
+      .post("http://localhost:3000/api/tasks/create", {
+        taskName: name,
+        taskDesc: description,
+        taskDeadline: deadline,
+      })
+      .then((response) => setTasks([...tasks, response.data]))
+      .catch((error) => console.error("Error adding task:", error));
     setShowAddTask(false);
   };
 
@@ -51,46 +55,70 @@ function TaskList() {
     newDeadline,
     newCompleted
   ) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId
-          ? {
-              ...task,
-              name: newName,
-              description: newDescription,
-              deadline: newDeadline,
-              completed: newCompleted,
-            }
-          : task
-      )
-    );
+    axios
+      .put(`http://localhost:3000/api/tasks/${taskId}`, {
+        taskName: newName,
+        taskDesc: newDescription,
+        taskDeadline: newDeadline,
+        isTaskComplete: newCompleted,
+      })
+      .then(() => {
+        const updatedTasks = tasks.map((task) =>
+          task.taskID === taskId
+            ? {
+                ...task,
+                taskName: newName,
+                taskDesc: newDescription,
+                taskDeadline: newDeadline,
+                isTaskComplete: newCompleted,
+              }
+            : task
+        );
+        setTasks(updatedTasks);
+      })
+      .catch((error) => console.error("Error updating task:", error));
   };
 
   const deleteTask = (taskId) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    axios
+      .delete(`http://localhost:3000/api/tasks/${taskId}`)
+      .then(() =>
+        setTasks((prevTasks) =>
+          prevTasks.filter((task) => task.taskID !== taskId)
+        )
+      )
+      .catch((error) => console.error("Error deleting task:", error));
   };
 
   const toggleShowCompleted = () => {
+    // Uncomment this function
     setShowCompletedTasks(!showCompletedTasks);
   };
 
-  const toggleSortByDate = () => {
-    setSortByDate(!sortByDate);
-  };
+  // const toggleSortByDate = () => {
+  //   setSortByDate(!sortByDate);
+  // };
 
-  const filteredTasks = showCompletedTasks
-    ? tasks.filter((task) => task.completed)
-    : tasks.filter((task) => !task.completed);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  let displayedTasks = [...tasks];
-  if (showCompletedTasks) {
-    displayedTasks = displayedTasks.filter((task) => task.completed);
-  } else {
-    displayedTasks = displayedTasks.filter((task) => !task.completed);
-  }
-  if (sortByDate) {
-    displayedTasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
-  }
+  // const filteredTasks = showCompletedTasks
+  //   ? tasks.filter((task) => task.isTaskComplete)
+  //   : tasks.filter((task) => !task.isTaskComplete);
+
+  // let displayedTasks = tasks;
+
+  // if (showCompletedTasks) {
+  //   displayedTasks = displayedTasks.filter((task) => task.isTaskComplete);
+  // } else {
+  //   displayedTasks = displayedTasks.filter((task) => !task.isTaskComplete);
+  // }
+  // if (sortByDate) {
+  //   displayedTasks.sort(
+  //     (a, b) => new Date(a.taskDeadline) - new Date(b.taskDeadline)
+  //   );
+  // }
 
   return (
     <div className="tl-container">
@@ -105,25 +133,26 @@ function TaskList() {
               onChange={toggleShowCompleted}
             />
           </label>
-          <label>
+          {/* <label>
             Sort by Date
             <input
               type="checkbox"
               checked={sortByDate}
               onChange={toggleSortByDate}
             />
-          </label>
+          </label> */}
         </div>
       </div>
       <div className="tl-content">
-        {displayedTasks.map((task) => (
-          <IndivTask
-            key={task.id}
-            task={task}
-            updateTask={updateTask}
-            deleteTask={deleteTask}
-          />
-        ))}
+        {Array.isArray(tasks) &&
+          tasks.map((task) => (
+            <IndivTask
+              key={task.taskID}
+              task={task}
+              updateTask={updateTask}
+              deleteTask={deleteTask}
+            />
+          ))}
         {showAddTask && (
           <AddTask onAddTask={addTask} onCancel={() => setShowAddTask(false)} />
         )}

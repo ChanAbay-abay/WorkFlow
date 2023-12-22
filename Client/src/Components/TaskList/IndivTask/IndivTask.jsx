@@ -4,17 +4,19 @@ import EditTask from "../EditTask/EditTask";
 
 function IndivTask({ task, updateTask, deleteTask }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(task.completed);
+  const [isCompleted, setIsCompleted] = useState(task.isTaskComplete);
+
+  console.log(task);
 
   const handleCheckboxChange = () => {
     setIsCompleted(!isCompleted);
 
     setTimeout(() => {
       updateTask(
-        task.id,
-        task.name,
-        task.description,
-        task.deadline,
+        task.taskID,
+        task.taskName,
+        task.taskDesc,
+        task.taskDeadline,
         !isCompleted
       );
     }, 400);
@@ -22,7 +24,7 @@ function IndivTask({ task, updateTask, deleteTask }) {
 
   const handleDelete = () => {
     // Call the deleteTask function with the task ID
-    deleteTask(task.id);
+    deleteTask(task.taskID);
   };
 
   return (
@@ -49,12 +51,12 @@ function IndivTask({ task, updateTask, deleteTask }) {
             <div className="it-task-details">
               <div className="it-name-desc">
                 <h2 className={`it-name ${task.completed ? "completed" : ""}`}>
-                  {task.name}
+                  {task.taskName}
                 </h2>
-                <p className="it-desc">{task.description}</p>
+                <p className="it-desc">{task.taskDesc}</p>
               </div>
               <div className="it-deadline">
-                <p>{task.deadline}</p>
+                <p>{task.taskDeadline}</p>
               </div>
             </div>
           </div>
