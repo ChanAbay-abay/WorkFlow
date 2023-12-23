@@ -7,7 +7,6 @@ import TLPieChart from "../../Components/TLPieChart/TLPieChart";
 import { useState } from "react";
 
 function Personal() {
-  const username = "Username";
   const [isLeftPanelExpanded, setIsLeftPanelExpanded] = useState(true);
   const [showPieChart, setShowPieChart] = useState(true);
 

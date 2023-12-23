@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     userID: {
       type: Sequelize.INTEGER,
-    //   allowNull: false,
+      allowNull: true,
       references: {
         model: "users",
         key: "userID"
@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     teamID: {
       type: Sequelize.INTEGER,
-    //   allowNull: false,
+      allowNull: true,
       references: {
         model: "teams",
         key: "teamID"
@@ -27,10 +27,12 @@ module.exports = (sequelize, Sequelize) => {
     },
     taskDesc: {
       type: Sequelize.STRING(50),
+      allowNull: true
     },
     taskDeadline :{
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW,
+      allowNull: true
     },
     isTaskComplete:{
         type: Sequelize.BOOLEAN,

@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./IndivTask.css";
 import EditTask from "../EditTask/EditTask";
-import { useState } from "react";
 
-function IndivTask({ task, updateTask, onDelete }) {
+function IndivTask({ task, updateTask, deleteTask }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(task.completed);
+  const [isCompleted, setIsCompleted] = useState(task.isTaskComplete);
+
+  // console.log(task);
 
   const handleCheckboxChange = () => {
     setIsCompleted(!isCompleted);
 
     setTimeout(() => {
       updateTask(
-        task.id,
-        task.name,
-        task.description,
-        task.deadline,
+        task.taskID,
+        task.taskName,
+        task.taskDesc,
+        task.taskDeadline,
         !isCompleted
       );
     }, 400);
   };
 
-  const deleteTask = () => {
-    onDelete(task.id);
+  const handleDelete = () => {
+    // Call the deleteTask function with the task ID
+    deleteTask(task.taskID);
   };
 
   return (
@@ -41,20 +43,21 @@ function IndivTask({ task, updateTask, onDelete }) {
               updateTask(id, name, description, deadline, task.completed);
               setIsEditing(false);
             }}
+            onDelete={handleDelete}
             onCancel={() => setIsEditing(false)}
-            onDelete={deleteTask} // Pass the delete function to EditTask
+            // onDelete={deleteTask} // Pass the delete function to EditTask
           />
         ) : (
           <div className="it-content" onClick={() => setIsEditing(true)}>
             <div className="it-task-details">
               <div className="it-name-desc">
                 <h2 className={`it-name ${task.completed ? "completed" : ""}`}>
-                  {task.name}
+                  {task.taskName}
                 </h2>
-                <p className="it-desc">{task.description}</p>
+                <p className="it-desc">{task.taskDesc}</p>
               </div>
               <div className="it-deadline">
-                <p>{task.deadline}</p>
+                <p>{task.taskDeadline}</p>
               </div>
             </div>
           </div>

@@ -1,20 +1,25 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./EditTask.css";
 
-function EditTask({ task, onSave, onCancel, onDelete }) {
-  const [editedName, setEditedName] = useState(task.name);
-  const [editedDescription, setEditedDescription] = useState(task.description);
-  const [editedDeadline, setEditedDeadline] = useState(task.deadline);
+function EditTask({ task, onSave, onDelete, onCancel }) {
+  const [editedName, setEditedName] = useState(task.taskName || "");
+  const [editedDescription, setEditedDescription] = useState(
+    task.taskDesc || ""
+  );
+  const [editedDeadline, setEditedDeadline] = useState(task.taskDeadline || "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Check if editedName is empty
     if (editedName.trim() === "") {
       alert("Task name cannot be empty.");
       return;
     }
-    onSave(task.id, editedName.trim(), editedDescription, editedDeadline);
+    onSave(
+      task.taskID, // Pass the task ID to identify the task
+      editedName.trim(),
+      editedDescription,
+      editedDeadline
+    );
   };
 
   return (
@@ -23,11 +28,13 @@ function EditTask({ task, onSave, onCancel, onDelete }) {
         <input
           type="text"
           value={editedName}
+          placeholder="Task Name"
           onChange={(e) => setEditedName(e.target.value)}
           className="et-edit-taskname"
         />
         <input
           value={editedDescription}
+          placeholder="Task Description"
           onChange={(e) => setEditedDescription(e.target.value)}
           className="et-edit-taskdesc"
         />
@@ -36,18 +43,21 @@ function EditTask({ task, onSave, onCancel, onDelete }) {
         <input
           type="date"
           value={editedDeadline}
+          placeholder="Task Deadline"
           onChange={(e) => setEditedDeadline(e.target.value)}
           className="et-edit-deadline"
         />
         <div className="mtl-edit-btn-container">
-          {/* TO BE FIXED WITH BACKEND */}
           <button onClick={handleSubmit} className="et-edit-check-btn">
             &#10003;
           </button>
           <button onClick={onCancel} className="et-edit-cancel-btn">
             &#10005;
           </button>
-          <button onClick={onDelete} className="et-edit-cancel-btn">
+          <button
+            onClick={() => onDelete(task.taskID)}
+            className="et-edit-cancel-btn"
+          >
             DEL
           </button>
         </div>
