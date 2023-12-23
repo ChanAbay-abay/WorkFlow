@@ -5,35 +5,11 @@ import AddTask from "./AddTask/AddTask";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-function TaskList() {
-  const [tasks, setTasks] = useState([]);
+function TaskList({ tasks = [], setTasks }) {
   const [loading, setLoading] = useState(true);
-
   const [showAddTask, setShowAddTask] = useState(false);
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
   const [sortByDate, setSortByDate] = useState(false);
-
-  useEffect(() => {
-    const caughtToken = localStorage.getItem("token");
-    const token = jwtDecode(caughtToken);
-
-    // console.log("Decoded Token:", token);
-
-    // Fetch tasks from the backend when the component mounts
-    axios
-      .get(`http://localhost:3000/api/tasks/all?userID=${token.user.id}`)
-      .then((response) => {
-        setTasks(response.data);
-        // console.log("res.data:", response.data);
-        // console.log("tasks:", response.tasks);
-        // console.log("res:", response);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching tasks:", error);
-        setLoading(false);
-      });
-  }, []);
 
   const addTask = (name, description, deadline, task) => {
     const caughtToken = localStorage.getItem("token");
@@ -103,6 +79,10 @@ function TaskList() {
   const toggleSortByDate = () => {
     setSortByDate(!sortByDate);
   };
+
+  useEffect(() => {
+    setLoading(false); // Set loading to false when tasks are received
+  }, [tasks]);
 
   if (loading) {
     return <div>Loading...</div>;

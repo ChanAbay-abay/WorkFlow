@@ -6,7 +6,14 @@ function IndivTask({ task, updateTask, deleteTask }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isCompleted, setIsCompleted] = useState(task.isTaskComplete);
 
-  // console.log(task);
+  const formatDate = (dateString) => {
+    // Check if the date string is not blank
+    if (dateString && dateString.trim() !== "") {
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+    return ""; // Return an empty string if the date is blank
+  };
 
   const handleCheckboxChange = () => {
     setIsCompleted(!isCompleted);
@@ -57,7 +64,7 @@ function IndivTask({ task, updateTask, deleteTask }) {
                 <p className="it-desc">{task.taskDesc}</p>
               </div>
               <div className="it-deadline">
-                <p>{task.taskDeadline}</p>
+                <p>{formatDate(task.taskDeadline)}</p>
               </div>
             </div>
           </div>
