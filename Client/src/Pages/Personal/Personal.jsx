@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import userDefault from "../../Assets/ICONS/userDefault.jpg";
 import NavBar from "../../Components/NavBar/NavBar";
 import TaskList from "../../Components/TaskList/TaskList";
 import TLPieChart from "../../Components/TLPieChart/TLPieChart";
-import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 function Personal() {
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isLeftPanelExpanded, setIsLeftPanelExpanded] = useState(true);
   const [showPieChart, setShowPieChart] = useState(true);
 
@@ -19,6 +22,30 @@ function Personal() {
       setIsLeftPanelExpanded(false);
     }
   };
+
+  const fetchUserData = () => {
+    const caughtToken = localStorage.getItem("token");
+    const token = jwtDecode(caughtToken);
+
+    axios
+      .get(`http://localhost:3000/api/tasks/all?userID=${token.user.id}`)
+      .then((response) => {
+        setTasks(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching tasks:", error);
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   return (
     <div className="ptl-container">
@@ -40,7 +67,7 @@ function Personal() {
             {isLeftPanelExpanded && (
               <h2 className="ptl-piechart-title">Completion Chart</h2>
             )}
-            {showPieChart && <TLPieChart />}
+            {showPieChart && <TLPieChart tasks={tasks} />}
           </div>
           <button onClick={toggleLeftPanel} className="toggle-panel-btn">
             {isLeftPanelExpanded ? "←" : "→"}
@@ -53,7 +80,7 @@ function Personal() {
               : "ptl-content-right-shrunk"
           }`}
         >
-          <TaskList />
+          <TaskList tasks={tasks} setTasks={setTasks} />
         </div>
       </div>
     </div>
