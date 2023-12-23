@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import userDefault from "../../Assets/ICONS/userDefault.jpg";
 import "./Homepage.css";
 import JoinOrCreateTeam from "../../Components/JoinOrCreateTeam/JoinCreateTeam";
@@ -6,19 +6,20 @@ import MiniTaskList from "../../Components/MiniTaskList/MiniTaskList";
 import TaskReport from "../../Components/TaskReport/TaskReport";
 import HomePageCalendar from "../../Components/HomePageCalendar/HomePageCalendar";
 import NavBar from "../../Components/NavBar/NavBar";
-import { useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import TaskList from "../../Components/TaskList/TaskList";
 
 function Homepage() {
   const [userData, setUserData] = useState(null);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    const caughtToken = localStorage.getItem("token");
-    const token = jwtDecode(caughtToken);
-
-    // console.log(caughtToken, token);
     const fetchData = async () => {
+      const caughtToken = localStorage.getItem("token");
+      const token = jwtDecode(caughtToken);
+
       try {
+        // Fetch user data
         const response = await fetch(
           `http://localhost:3000/api/users/${token.user.id}`
         );
@@ -26,12 +27,22 @@ function Homepage() {
         if (response.ok) {
           const userData = await response.json();
           setUserData(userData);
-          // console.log(userData);
+
+          // Fetch tasks data
+          const tasksResponse = await fetch(
+            `http://localhost:3000/api/tasks/all?userID=${token.user.id}`
+          );
+          if (tasksResponse.ok) {
+            const tasksData = await tasksResponse.json();
+            setTasks(tasksData);
+          } else {
+            console.error("Error fetching tasks data");
+          }
         } else {
           console.error("Error fetching user data");
         }
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -57,12 +68,13 @@ function Homepage() {
 
         <div className="homepage-bottom">
           <div className="homepage-miniTaskList">
-            <MiniTaskList />
+            {/* <MiniTaskList /> */}
+            <TaskList tasks={tasks} setTasks={setTasks} />
           </div>
 
           <div className="report-calendar-container">
             <div className="homepage-taskreport">
-              <TaskReport />
+              <TaskList tasks={tasks} setTasks={setTasks} />
             </div>
 
             <div className="homepage-calendar">

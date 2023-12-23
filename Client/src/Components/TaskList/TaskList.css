@@ -1,3 +1,9 @@
+.tl-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .tl-topbar {
     display: flex;
     justify-content: space-between;
@@ -10,7 +16,7 @@
 
 .tl-content {
     background-color: white;
-    height: 87.5vh;
+    height: 100%;
     width: 100%;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
