@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import userDefault from "../../Assets/ICONS/userDefault.jpg";
 import "./Homepage.css";
 import JoinOrCreateTeam from "../../Components/JoinOrCreateTeam/JoinCreateTeam";
-import MiniTaskList from "../../Components/MiniTaskList/MiniTaskList";
 import TaskReport from "../../Components/TaskReport/TaskReport";
 import HomePageCalendar from "../../Components/HomePageCalendar/HomePageCalendar";
 import NavBar from "../../Components/NavBar/NavBar";
@@ -12,6 +11,14 @@ import TaskList from "../../Components/TaskList/TaskList";
 function Homepage() {
   const [userData, setUserData] = useState(null);
   const [tasks, setTasks] = useState([]);
+
+  const handleLogout = () => {
+    // Your logout logic here, e.g., remove token from local storage
+    localStorage.removeItem("token");
+
+    // Redirect to the "/" page
+    window.location.href = "/";
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +59,7 @@ function Homepage() {
   return (
     <div className="homepage-container">
       <div className="navcont">
-        <NavBar></NavBar>
+        <NavBar handleLogout={handleLogout} />
       </div>
       <div className="homepage-content">
         <div className="homepage-top">

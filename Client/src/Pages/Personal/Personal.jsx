@@ -23,6 +23,14 @@ function Personal() {
     }
   };
 
+  const handleLogout = () => {
+    // Your logout logic here, e.g., remove token from local storage
+    localStorage.removeItem("token");
+
+    // Redirect to the "/" page
+    window.location.href = "/";
+  };
+
   const fetchUserData = () => {
     const caughtToken = localStorage.getItem("token");
     const token = jwtDecode(caughtToken);
@@ -50,7 +58,7 @@ function Personal() {
   return (
     <div className="ptl-container">
       <div className="ptl-nav">
-        <NavBar />
+        <NavBar handleLogout={handleLogout} />
       </div>
       <div className="ptl-content">
         <div
