@@ -74,7 +74,7 @@ function Homepage() {
 
           <div className="report-calendar-container">
             <div className="homepage-taskreport">
-              <TaskList tasks={tasks} setTasks={setTasks} />
+              <TaskReport></TaskReport>
             </div>
 
             <div className="homepage-calendar">
