@@ -17,16 +17,16 @@ function TaskList() {
     const caughtToken = localStorage.getItem("token");
     const token = jwtDecode(caughtToken);
 
-    console.log("Decoded Token:", token);
+    // console.log("Decoded Token:", token);
 
     // Fetch tasks from the backend when the component mounts
     axios
       .get(`http://localhost:3000/api/tasks/all?userID=${token.user.id}`)
       .then((response) => {
         setTasks(response.data);
-        console.log("res.data:", response.data);
-        console.log("tasks:", response.tasks);
-        console.log("res:", response);
+        // console.log("res.data:", response.data);
+        // console.log("tasks:", response.tasks);
+        // console.log("res:", response);
         setLoading(false);
       })
       .catch((error) => {
