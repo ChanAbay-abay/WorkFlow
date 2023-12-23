@@ -6,11 +6,8 @@ import { Link } from "react-router-dom";
 import userWhite from "../../Assets/ICONS/userWhite.png";
 import groupWhite from "../../Assets/ICONS/groupWhite.png";
 import hasbulla from "../../Assets/hasbulla.jpg";
-import Personal from "../../Pages/Personal/Personal";
-import Homepage from "../../Pages/Homepage/Homepage";
-import TeamOne from "../../Pages/Teams/TeamOne/TeamOne";
 
-function NavBar() {
+function NavBar({ handleLogout }) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -32,43 +29,51 @@ function NavBar() {
           </div>
         </Link>
 
-        <div className="nav-list">
-          {/* personal */}
-          {/* NEEDS TO LINK TO PERSONAL TASKS */}
-          <Link to="/personal">
-            <div className="nav-list-box">
-              <img src={userWhite} alt="" className="nav-list-icon" />
-              <h2 className="nav-personal">Personal</h2>
-            </div>
-          </Link>
+        <div className="list-button-sep">
+          <div className="nav-list">
+            {/* personal */}
+            {/* NEEDS TO LINK TO PERSONAL TASKS */}
+            <Link to="/personal">
+              <div className="nav-list-box">
+                <img src={userWhite} alt="" className="nav-list-icon" />
+                <h2 className="nav-personal">Personal</h2>
+              </div>
+            </Link>
 
-          {/* teams | is a dropdown menu of all teams the user is in*/}
-          <div
-            className="nav-list-box"
-            onClick={toggleDropdown}
-            onMouseEnter={stopPropagation}
-          >
-            <img src={groupWhite} alt="" className="nav-list-icon" />
-            <h2>Teams</h2>
-            {isDropdownOpen && (
-              <div className="dropdown-content" onClick={stopPropagation}>
-                <div className="nav-team-list">
-                  <div className="nav-each-team">
-                    <Link to="/teamone">
-                      <img src={hasbulla} alt="" className="nav-teamImage" />
-                      <h3>Hasbullas</h3>
-                    </Link>
-                  </div>
-                  {/* <div className="nav-each-team">
+            {/* teams | is a dropdown menu of all teams the user is in*/}
+            <div
+              className="nav-list-box"
+              onClick={toggleDropdown}
+              onMouseEnter={stopPropagation}
+            >
+              <img src={groupWhite} alt="" className="nav-list-icon" />
+              <h2>Teams</h2>
+              {isDropdownOpen && (
+                <div className="dropdown-content" onClick={stopPropagation}>
+                  <div className="nav-team-list">
+                    <div className="nav-each-team">
+                      <Link to="/teamone">
+                        <img src={hasbulla} alt="" className="nav-teamImage" />
+                        <h3>Hasbullas</h3>
+                      </Link>
+                    </div>
+                    {/* <div className="nav-each-team">
                     <Link to={{}}>
                       <img src={hasbulla} alt="" className="nav-teamImage" />
                       <h3>team2</h3>
                     </Link>
                   </div> */}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
+          <button
+            className="nav-list-box nav-logout-btn"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </>

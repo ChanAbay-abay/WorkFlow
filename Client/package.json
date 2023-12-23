@@ -19,7 +19,7 @@
     "react": "^18.2.0",
     "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.1",
+    "react-router-dom": "^6.21.1",
     "recharts": "^2.10.3"
   },
   "devDependencies": {
