@@ -6,7 +6,7 @@ function IndivTask({ task, updateTask, deleteTask }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isCompleted, setIsCompleted] = useState(task.isTaskComplete);
 
-  console.log(task);
+  // console.log(task);
 
   const handleCheckboxChange = () => {
     setIsCompleted(!isCompleted);

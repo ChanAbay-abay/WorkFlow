@@ -8,8 +8,8 @@ const TaskController = {
       const { taskName, taskDesc, taskDeadline, userID, teamID } = req.body;
 
       // Validate required fields
-      if (!taskName) {
-        return res.status(400).json({ error: 'Task name is required' });
+      if (!taskName || !userID) {
+        return res.status(400).json({ error: 'Task name and user ID are required' });
       }
 
       const newTask = await Task.create({

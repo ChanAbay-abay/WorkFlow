@@ -6,13 +6,12 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 function TaskList() {
-
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   const [showAddTask, setShowAddTask] = useState(false);
-  const [showCompletedTasks, setShowCompletedTasks] = useState(false); // Uncomment this line
-  // const [sortByDate, setSortByDate] = useState(false);
+  const [showCompletedTasks, setShowCompletedTasks] = useState(false);
+  const [sortByDate, setSortByDate] = useState(false);
 
   useEffect(() => {
     const caughtToken = localStorage.getItem("token");
@@ -36,7 +35,10 @@ function TaskList() {
       });
   }, []);
 
-  const addTask = (name, description, deadline) => {
+  const addTask = (name, description, deadline, task) => {
+    const caughtToken = localStorage.getItem("token");
+    const token = jwtDecode(caughtToken);
+
     axios.defaults.headers.post["Content-Type"] = "application/json";
 
     axios
@@ -44,6 +46,8 @@ function TaskList() {
         taskName: name,
         taskDesc: description,
         taskDeadline: deadline,
+        task: task,
+        userID: token.user.id,
       })
       .then((response) => setTasks([...tasks, response.data]))
       .catch((error) => console.error("Error adding task:", error));
@@ -93,34 +97,34 @@ function TaskList() {
   };
 
   const toggleShowCompleted = () => {
-    // Uncomment this function
     setShowCompletedTasks(!showCompletedTasks);
   };
 
-  // const toggleSortByDate = () => {
-  //   setSortByDate(!sortByDate);
-  // };
+  const toggleSortByDate = () => {
+    setSortByDate(!sortByDate);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // const filteredTasks = showCompletedTasks
-  //   ? tasks.filter((task) => task.isTaskComplete)
-  //   : tasks.filter((task) => !task.isTaskComplete);
+  const filteredTasks = showCompletedTasks
+    ? tasks.filter((task) => task.isTaskComplete)
+    : tasks.filter((task) => !task.isTaskComplete);
 
-  // let displayedTasks = tasks;
+  let displayedTasks = tasks;
 
-  // if (showCompletedTasks) {
-  //   displayedTasks = displayedTasks.filter((task) => task.isTaskComplete);
-  // } else {
-  //   displayedTasks = displayedTasks.filter((task) => !task.isTaskComplete);
-  // }
-  // if (sortByDate) {
-  //   displayedTasks.sort(
-  //     (a, b) => new Date(a.taskDeadline) - new Date(b.taskDeadline)
-  //   );
-  // }
+  if (showCompletedTasks) {
+    displayedTasks = displayedTasks.filter((task) => task.isTaskComplete);
+  } else {
+    displayedTasks = displayedTasks.filter((task) => !task.isTaskComplete);
+  }
+
+  if (sortByDate) {
+    displayedTasks.sort(
+      (a, b) => new Date(a.taskDeadline) - new Date(b.taskDeadline)
+    );
+  }
 
   return (
     <div className="tl-container">
@@ -135,19 +139,19 @@ function TaskList() {
               onChange={toggleShowCompleted}
             />
           </label>
-          {/* <label>
+          <label>
             Sort by Date
             <input
               type="checkbox"
               checked={sortByDate}
               onChange={toggleSortByDate}
             />
-          </label> */}
+          </label>
         </div>
       </div>
       <div className="tl-content">
         {Array.isArray(tasks) &&
-          tasks.map((task) => (
+          displayedTasks.map((task) => (
             <IndivTask
               key={task.taskID}
               task={task}
@@ -156,7 +160,12 @@ function TaskList() {
             />
           ))}
         {showAddTask && (
-          <AddTask onAddTask={addTask} onCancel={() => setShowAddTask(false)} />
+          <AddTask
+            key={tasks.taskID}
+            task={tasks}
+            onAddTask={addTask}
+            onCancel={() => setShowAddTask(false)}
+          />
         )}
         {!showCompletedTasks && (
           <div className="tl-button-div">
