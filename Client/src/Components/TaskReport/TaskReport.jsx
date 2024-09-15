@@ -49,14 +49,14 @@ function TaskReport() {
       {/* maybe we can make a tracker for how many tasks a user finishes in 
       a day pina streak streak */}
       <div className="TR-linechart-container">
-        <ResponsiveContainer width="100%" height={125}>
+        <ResponsiveContainer width="100%" height={100}>
           <BarChart
             data={data}
             margin={{
               top: 5,
               // right: 30,
               // left: 20,
-              bottom: 35,
+              bottom: 5,
             }}
           >
             {/* <CartesianGrid strokeDasharray="3 3" /> */}
